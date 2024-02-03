@@ -24,7 +24,7 @@ class DepartmentController extends Controller
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
-        Department::create($request);
+        Department::create($data);
         return redirect()->route('admin.department.index');
     }
 
