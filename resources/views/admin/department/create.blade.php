@@ -3,7 +3,7 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between">
             <div class="header-title">
-                <h4 class="card-title">Form Grid</h4>
+                <h4 class="card-title">Department</h4>
             </div>
             <div class="header-action">
                 <i data-toggle="collapse" data-target="#form-element-2" aria-expanded="false">
@@ -18,17 +18,22 @@
         <div class="card-body">
             <div class="collapse" id="form-element-2">
             </div>
-            <form action="{{ route('admin.department.store') }}" method="post">
+            <form action="{{ route('admin.department.store') }}" method="post" class="w-50">
                 @csrf
-                <div class="form-row">
-                    <div class="col-md-6 mb-3">
-                        <label for="title">Title</label>
-                        <input type="text" class="form-control" id="title" name="title" required="">
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="title_tr">Title_tr</label>
-                        <input type="text" class="form-control" id="title_tr" name="title_tr" required="">
-                    </div>
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}">
+                    @error('title')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="title_tr">Title turkish:</label>
+                    <input type="text" class="form-control" name="title_tr" id="title_tr"
+                           value="{{ old('email') }}">
+                    @error('title_tr')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group mb-0">
                     <button class="btn btn-primary" type="submit">Create</button>

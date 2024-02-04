@@ -6,10 +6,10 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <div class="header-title">
-                            <h4 class="card-title">Department Datatables</h4>
+                            <h4 class="card-title">Category Datatables</h4>
                         </div>
                         <div class="header-action">
-                            <a href="{{ route('admin.department.create') }}" class="btn btn-primary">Add</a>
+                            <a href="{{ route('admin.category.create') }}" class="btn btn-primary">Add</a>
                         </div>
                     </div>
                     <div class="card-body">
@@ -27,22 +27,20 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($departments as $department)
+                                @foreach($categories as $category)
                                     <tr>
-                                        <td>{{ $department->id }}</td>
-                                        <td>{{ $department->title }}</td>
-                                        <td>{{ $department->title_tr }}</td>
+                                        <td>{{ $category->id }}</td>
+                                        <td>{{ $category->title }}</td>
+                                        <td>{{ $category->title_tr }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('admin.department.show', $department->id) }}">
+                                            <a href="#">
                                                 <i class="far fa-eye"></i></a>
                                         </td>
                                         <td class="text-center">
-                                            <a href="{{ route('admin.department.edit', $department->id) }}" class="text-success"><i class="fas fa-pencil-alt"></i></a>
+                                            <a href="{{ route('admin.category.edit', $category->id) }}" class="text-success"><i class="fas fa-pencil-alt"></i></a>
                                         </td>
                                         <td class="text-center">
-                                            <form action="{{ route('admin.department.delete', $department->id) }}" method="post">
-                                                @csrf
-                                                @method('DELETE')
+                                            <form>
                                                 <button type="submit" class="border-0 bg-transparent">
                                                     <i class="fas fa-trash text-danger" role="button"></i>
                                                 </button>

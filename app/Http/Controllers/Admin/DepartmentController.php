@@ -15,9 +15,9 @@ class DepartmentController extends Controller
         return view('admin.department.index', compact('departments'));
     }
 
-    public function create(Department $department)
+    public function create()
     {
-        return view('admin.department.create', compact('department'));
+        return view('admin.department.create');
     }
 
 
@@ -35,14 +35,14 @@ class DepartmentController extends Controller
 
     public function edit(Department $department)
     {
-        return view('admin.department.edit');
+        return view('admin.department.edit', compact('department'));
     }
 
     public function update(UpdateRequest $request, Department $department)
     {
         $data = $request->validated();
         $department->update($data);
-        return redirect()->route('admin.department.show');
+        return redirect()->route('admin.department.index');
     }
 
 

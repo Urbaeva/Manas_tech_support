@@ -6,10 +6,10 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <div class="header-title">
-                            <h4 class="card-title">Department Datatables</h4>
+                            <h4 class="card-title">User Datatables</h4>
                         </div>
                         <div class="header-action">
-                            <a href="{{ route('admin.department.create') }}" class="btn btn-primary">Add</a>
+                            <a href="{{ route('admin.user.create') }}" class="btn btn-primary">Add</a>
                         </div>
                     </div>
                     <div class="card-body">
@@ -19,28 +19,29 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Title</th>
-                                    <th>Title turkish</th>
-                                    <th>Show</th>
-                                    <th>Update</th>
-                                    <th>Delete</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th colspan="3" class="text-center">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($departments as $department)
+                                @foreach($users as $user)
                                     <tr>
-                                        <td>{{ $department->id }}</td>
-                                        <td>{{ $department->title }}</td>
-                                        <td>{{ $department->title_tr }}</td>
+                                        <td>{{ $user->id }}</td>
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>{{ App\Models\User::getRoles()[$user->role] }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('admin.department.show', $department->id) }}">
+                                            <a href="{{ route('admin.user.show', $user->id) }}">
                                                 <i class="far fa-eye"></i></a>
                                         </td>
                                         <td class="text-center">
-                                            <a href="{{ route('admin.department.edit', $department->id) }}" class="text-success"><i class="fas fa-pencil-alt"></i></a>
+                                            <a href="{{ route('admin.user.edit', $user->id) }}"
+                                               class="text-success"><i class="fas fa-pencil-alt"></i></a>
                                         </td>
                                         <td class="text-center">
-                                            <form action="{{ route('admin.department.delete', $department->id) }}" method="post">
+                                            <form action="{{ route('admin.user.delete', $user->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="border-0 bg-transparent">
@@ -54,26 +55,18 @@
                                 <tfoot>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Title</th>
-                                    <th>Title turkish</th>
-                                    <th>Show</th>
-                                    <th>Update</th>
-                                    <th>Delete</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th colspan="3" class="text-center">Action</th>
                                 </tr>
                                 </tfoot>
                             </table>
                         </div>
                     </div>
                 </div>
-                {{--                  here was  second card--}}
+
             </div>
         </div>
     </div>
-
-    <script>
-        $(document).ready(function () {
-            // Initialize DataTables
-            $('#datatable-1').DataTable();
-        });
-    </script>
 @endsection

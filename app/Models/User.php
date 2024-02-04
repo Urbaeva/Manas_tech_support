@@ -16,6 +16,14 @@ class User extends Authenticatable
     const ADMIN = 1;
     const USER = 0;
 
+    public static function getRoles()
+    {
+        return [
+            self::SUPER_ADMIN => 'SUPER_ADMIN',
+            self::ADMIN => 'ADMIN',
+            self::USER => 'USER',
+        ];
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -49,4 +57,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class, 'department_id', 'id');
+    }
 }
