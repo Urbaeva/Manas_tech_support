@@ -6,7 +6,8 @@
             </div>
         </div>
         <div class="card-body">
-            <form action="{{ route('admin.service.update', $service->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.service.update', $service->id) }}" method="POST"
+                  enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
                 <div class="form-group row align-items-center">
@@ -55,12 +56,12 @@
                         <label>Category:</label>
                         <select class="form-control" id="exampleFormControlSelect1">
                             @foreach($categories as $category)
-                                <option value="{{ $category->id }}" {{ $category->id == $service->category_id ? ' selected' : ''}}
+                                <option
+                                    value="{{ $category->id }}" {{ $category->id == $service->category_id ? ' selected' : ''}}
                                 >{{ $category->title }}</option>
                             @endforeach
                         </select>
                     </div>
-
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <a href="{{ route('admin.service.index') }}" class="btn btn-outline-primary mr-2">Cancel</a>

@@ -13,7 +13,6 @@ use App\Models\File;
 use App\Models\Image;
 use App\Models\Service;
 use App\Models\Video;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class ServiceController extends Controller

@@ -55,6 +55,23 @@
                     <button type="reset" class="btn btn-outline-primary mr-2">Cancel</button>
                 </div>
             </form>
+
+            @if ($service->videos->count() > 0)
+                <h5>Existing Videos:</h5>
+                <ul>
+                    @foreach ($service->videos as $video)
+                        <li>{{ $video->title }}</li>
+                        <video width="540" height="260" controls>
+                            <!-- Provide the source of your video file -->
+                            <source src="{{ asset('storage/' . $video->video) }}" type="video/mp4">
+                            <!-- Add additional source elements for different video formats if needed -->
+                            Your browser does not support the video tag.
+                        </video>
+                    @endforeach
+                </ul>
+            @else
+                <p>No videos found for this service.</p>
+            @endif
         </div>
     </div>
 </div>
