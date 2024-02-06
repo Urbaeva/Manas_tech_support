@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests\Personal\Category;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -22,11 +22,8 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'=>'required|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password'=>'required|max:255',
-            'role'=>'nullable|integer',
-            'department_id'=>'nullable|integer|exists:departments,id',
+            'title'=>'required|max:255',
+            'title_tr'=>'required|max:255',
         ];
     }
 }

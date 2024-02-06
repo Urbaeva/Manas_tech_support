@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Department\StoreRequest;
-use App\Http\Requests\Department\UpdateRequest;
+use App\Http\Requests\Admin\Department\StoreRequest;
+use App\Http\Requests\Admin\Department\UpdateRequest;
 use App\Models\Department;
 
 class DepartmentController extends Controller

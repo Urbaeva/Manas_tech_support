@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Service;
+namespace App\Http\Requests\Personal\Service;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FileRequest extends FormRequest
+class VideoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class FileRequest extends FormRequest
         return [
             'title' => 'required|max:255',
             'title_tr' => 'required|max:255',
-            'file' => 'required|file',
-            'file_tr' => 'nullable|file',
+            'video' => 'required|file',
+            'video_tr' => 'nullable|file',
         ];
     }
 }
