@@ -12,4 +12,14 @@ class Category extends Model
     protected $table = 'categories';
 
     protected $guarded = false;
+
+    public function services()
+    {
+        return $this->hasMany(Service::class);
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
 }

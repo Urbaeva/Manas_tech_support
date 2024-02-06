@@ -5,7 +5,16 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div class="header-title">
-                        <h4 class="card-title">Basic Form</h4>
+                        <h4 class="card-title">Add new category</h4>
+                    </div>
+                    <div class="header-action">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Home</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('admin.category.index') }}">Category</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Add category</li>
+                            </ol>
+                        </nav>
                     </div>
                 </div>
                 <div class="card-body w-50">
@@ -40,7 +49,7 @@
                             @enderror
                         </div>
                         <input type="submit" class="btn btn-primary" value="Submit">
-                        <input type="submit" class="btn bg-danger" value="Cancel">
+                        <a href="{{ route('admin.category.index') }}" type="button" class="btn bg-danger">Cancel</a>
                     </form>
                 </div>
             </div>

@@ -23,7 +23,7 @@ class UpdateRequest extends FormRequest
     {
         return [
             'name'=>'required|max:255',
-            'email'=>'required|email',
+            'email' => 'required|email|unique:users,email',
             'password'=>'required|max:255',
             'role'=>'nullable|integer',
             'department_id'=>'nullable|integer|exists:departments,id',

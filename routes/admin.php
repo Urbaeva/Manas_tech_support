@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\IndexController;
+use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,7 +31,7 @@ Route::group(['prefix' => 'admin'], function () {
     });
 
 
-    Route::group(['prefix' => 'category'], function () {
+    Route::group(['prefix' => 'categories'], function () {
         Route::get('/', [CategoryController::class, 'index'])->name('admin.category.index');
         Route::get('/create', [CategoryController::class, 'create'])->name('admin.category.create');
         Route::post('/', [CategoryController::class, 'store'])->name('admin.category.store');
@@ -42,7 +43,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::delete('/{category}/delete', [CategoryController::class, 'delete'])->name('admin.category.delete');
     });
 
-    Route::group(['prefix' => 'user'], function () {
+    Route::group(['prefix' => 'users'], function () {
         Route::get('/', [UserController::class, 'index'])->name('admin.user.index');
         Route::get('/create', [UserController::class, 'create'])->name('admin.user.create');
         Route::post('/', [UserController::class, 'store'])->name('admin.user.store');
@@ -52,5 +53,23 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::delete('/{user}/delete', [UserController::class, 'delete'])->name('admin.user.delete');
         Route::get('/{user}', [UserController::class, 'show'])->name('admin.user.show');
+    });
+
+    Route::group(['prefix' => 'services'], function () {
+        Route::get('/', [ServiceController::class, 'index'])->name('admin.service.index');
+        Route::get('/create', [ServiceController::class, 'create'])->name('admin.service.create');
+        Route::post('/', [ServiceController::class, 'store'])->name('admin.service.store');
+
+        Route::get('/{service}/edit', [ServiceController::class, 'edit'])->name('admin.service.edit');
+        Route::patch('/{service}', [ServiceController::class, 'update'])->name('admin.service.update');
+
+        Route::delete('/{service}/delete', [ServiceController::class, 'delete'])->name('admin.service.delete');
+        Route::get('/{service}', [ServiceController::class, 'show'])->name('admin.service.show');
+
+        Route::group(['prefix' => '/{service}'], function (){
+             Route::post('/addVideo', [ServiceController::class, 'addVideo'])->name('admin.service.addVideo');
+             Route::post('/addImage', [ServiceController::class, 'addImage'])->name('admin.service.addImage');
+             Route::post('/addFile', [ServiceController::class, 'addFile'])->name('admin.service.addFile');
+        });
     });
 });

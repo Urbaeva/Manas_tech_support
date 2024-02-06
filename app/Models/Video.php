@@ -12,4 +12,9 @@ class Video extends Model
     protected $table = 'videos';
 
     protected $guarded = false;
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
+    }
 }

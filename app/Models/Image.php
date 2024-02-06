@@ -12,4 +12,9 @@ class Image extends Model
     protected $table = 'images';
 
     protected $guarded = false;
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
+    }
 }

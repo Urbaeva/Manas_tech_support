@@ -12,4 +12,9 @@ class File extends Model
     protected $table = 'files';
 
     protected $guarded = false;
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
+    }
 }

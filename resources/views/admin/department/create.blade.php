@@ -6,13 +6,13 @@
                 <h4 class="card-title">Department</h4>
             </div>
             <div class="header-action">
-                <i data-toggle="collapse" data-target="#form-element-2" aria-expanded="false">
-                    <svg width="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                         stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-                    </svg>
-                </i>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.department.index') }}">Departments</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Add department</li>
+                    </ol>
+                </nav>
             </div>
         </div>
         <div class="card-body">

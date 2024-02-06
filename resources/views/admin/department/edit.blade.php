@@ -5,7 +5,16 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div class="header-title">
-                        <h4 class="card-title">Basic Form</h4>
+                        <h4 class="card-title">Edit department</h4>
+                    </div>
+                    <div class="header-action">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Home</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('admin.department.index') }}">Departments</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">{{ $department->title }}</li>
+                            </ol>
+                        </nav>
                     </div>
                 </div>
                 <div class="card-body w-50">

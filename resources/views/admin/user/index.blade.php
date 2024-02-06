@@ -22,7 +22,7 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Role</th>
-                                    <th colspan="3" class="text-center">Action</th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -32,15 +32,11 @@
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ App\Models\User::getRoles()[$user->role] }}</td>
-                                        <td class="text-center">
+                                        <td class="text-center d-flex justify-content-between">
                                             <a href="{{ route('admin.user.show', $user->id) }}">
                                                 <i class="far fa-eye"></i></a>
-                                        </td>
-                                        <td class="text-center">
                                             <a href="{{ route('admin.user.edit', $user->id) }}"
                                                class="text-success"><i class="fas fa-pencil-alt"></i></a>
-                                        </td>
-                                        <td class="text-center">
                                             <form action="{{ route('admin.user.delete', $user->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
@@ -58,7 +54,7 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Role</th>
-                                    <th colspan="3" class="text-center">Action</th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                                 </tfoot>
                             </table>

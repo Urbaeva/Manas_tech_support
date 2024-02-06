@@ -7,9 +7,17 @@
                     <div class="card-header d-flex justify-content-between">
                         <div class="header-title">
                             <h4 class="card-title">Department Datatables</h4>
+                            <div class="header-action mt-2">
+                                <a href="{{ route('admin.department.create') }}" class="btn btn-primary">Add</a>
+                            </div>
                         </div>
                         <div class="header-action">
-                            <a href="{{ route('admin.department.create') }}" class="btn btn-primary">Add</a>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Departments</li>
+                                </ol>
+                            </nav>
                         </div>
                     </div>
                     <div class="card-body">
@@ -21,9 +29,7 @@
                                     <th>ID</th>
                                     <th>Title</th>
                                     <th>Title turkish</th>
-                                    <th>Show</th>
-                                    <th>Update</th>
-                                    <th>Delete</th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -32,15 +38,12 @@
                                         <td>{{ $department->id }}</td>
                                         <td>{{ $department->title }}</td>
                                         <td>{{ $department->title_tr }}</td>
-                                        <td class="text-center">
+                                        <td class="text-center d-flex justify-content-around">
                                             <a href="{{ route('admin.department.show', $department->id) }}">
                                                 <i class="far fa-eye"></i></a>
-                                        </td>
-                                        <td class="text-center">
-                                            <a href="{{ route('admin.department.edit', $department->id) }}" class="text-success"><i class="fas fa-pencil-alt"></i></a>
-                                        </td>
-                                        <td class="text-center">
-                                            <form action="{{ route('admin.department.delete', $department->id) }}" method="post">
+                                            <a href="{{ route('admin.department.edit', $department->id) }}"
+                                               class="text-success"><i class="fas fa-pencil-alt"></i></a>
+                                            <form action="{{ route('admin.department.delete', $department->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="border-0 bg-transparent">
@@ -56,9 +59,7 @@
                                     <th>ID</th>
                                     <th>Title</th>
                                     <th>Title turkish</th>
-                                    <th>Show</th>
-                                    <th>Update</th>
-                                    <th>Delete</th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                                 </tfoot>
                             </table>
