@@ -66,6 +66,7 @@
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <a href="{{ route('admin.service.index') }}" class="btn btn-outline-primary mr-2">Cancel</a>
             </form>
+
         </div>
     </div>
 </div>

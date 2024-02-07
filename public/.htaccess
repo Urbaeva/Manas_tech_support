@@ -11,6 +11,13 @@
 
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
+     RewriteCond %{REQUEST_FILENAME} -f
+        RewriteRule ^ - [L]
+
+        <FilesMatch "\.(mp4|mov|flv)$">
+            Header set Accept-Ranges bytes
+            Header set Access-Control-Allow-Origin "*"
+        </FilesMatch>
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
 

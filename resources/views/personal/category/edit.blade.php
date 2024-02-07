@@ -1,4 +1,4 @@
-@extends('ppersonal.layouts.main')
+@extends('personal.layouts.main')
 @section('content')
     <div class="card">
         <div class="card-body">
@@ -10,15 +10,15 @@
                     <div class="header-action">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('ppersonal.index') }}">Home</a></li>
-                                <li class="breadcrumb-item"><a href="{{ route('ppersonal.category.index') }}">Category</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('personal.index') }}">Home</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('personal.category.index') }}">Category</a></li>
                                 <li class="breadcrumb-item active" aria-current="page"> {{ $category->title }}</li>
                             </ol>
                         </nav>
                     </div>
                 </div>
                 <div class="card-body w-50">
-                    <form action="{{ route('ppersonal.category.update', $category->id) }}" method="post">
+                    <form action="{{ route('personal.category.update', $category->id) }}" method="post">
                         @csrf
                         @method('PATCH')
                         <div class="form-group">
@@ -36,21 +36,8 @@
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label>Choose department</label>
-                            <select class="form-control" name="department_id">
-                                @foreach($departments as $department)
-                                    <option value="{{ $department->id }}"
-                                            {{ $department->id == $category->department_id ? ' selected' : ''}}
-                                    >{{ $department->title }}</option>
-                                @endforeach
-                            </select>
-                            @error('department_id')
-                            <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
                         <input type="submit" class="btn btn-primary" value="Submit">
-                        <a href="{{ route('personal.category.index') }}" type="button" class="btn bg-danger">Cancel</a>
+                        <a href="{{ route('personal.category.index') }}" type="button" class="btn btn-outline-primary">Cancel</a>
                     </form>
                 </div>
             </div>

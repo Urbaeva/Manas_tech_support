@@ -8,6 +8,7 @@ use App\Http\Requests\Personal\Category\UpdateRequest;
 use App\Models\Category;
 use App\Models\Department;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -27,8 +28,17 @@ class CategoryController extends Controller
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
-        Category::create($data);
-        return redirect()->route('personal.category.index');
+        try {
+            DB::beginTransaction();
+            $user = Auth::user();
+            $data['department_id'] = $user->department->id;
+            Category::create($data);
+            DB::commit();
+            return redirect()->route('personal.category.index');
+        } catch (\Exception $exception){
+            DB::rollBack();
+            dd($exception->getMessage());
+        }
     }
 
     public function show(Category $category)
@@ -38,8 +48,7 @@ class CategoryController extends Controller
 
     public function edit(Category $category)
     {
-        $departments = Department::all();
-        return view('personal.category.edit', compact('category', 'departments'));
+        return view('personal.category.edit', compact('category'));
     }
 
     public function update(UpdateRequest $request, Category $category)

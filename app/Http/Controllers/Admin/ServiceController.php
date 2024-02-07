@@ -101,4 +101,18 @@ class ServiceController extends Controller
         File::create($data);
         return redirect()->route('admin.service.show', $service->id)->with(['notification' => 'File successfully added!']);
     }
+
+    public function getVideo(Video $video)
+    {
+        $video_path = public_path('storage/'.$video->video);
+        if (file_exists($video_path)) {
+            // Return the video file as a response
+            return response()->file($video_path, [
+                'Content-Type' => 'video/mp4',
+            ]);
+        } else {
+            // Handle the case where the video file doesn't exist
+            return response()->json(['error' => 'Video not found'], 404);
+        }
+    }
 }

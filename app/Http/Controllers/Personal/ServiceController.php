@@ -13,19 +13,31 @@ use App\Models\File;
 use App\Models\Image;
 use App\Models\Service;
 use App\Models\Video;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class ServiceController extends Controller
 {
     public function index()
     {
-        $services = Service::all();
+        $user = auth()->user();
+        $services = collect();
+        $categories = collect();
+
+        if ($user->department) {
+            $categories = $user->department->categories;
+
+            foreach ($categories as $category) {
+                $services = $services->merge($category->services);
+            }
+        }
         return view('personal.service.index', compact('services'));
     }
 
     public function create()
     {
-        $categories = Category::all();
+        $user = auth()->user();
+        $categories = $user->department ? $user->department->categories : [];
         return view('personal.service.create', compact('categories'));
     }
 
@@ -40,13 +52,15 @@ class ServiceController extends Controller
 
     public function show(Service $service)
     {
-        $categories = Category::all();
+        $user = auth()->user();
+        $categories = $user->department ? $user->department->categories : [];
         return view('personal.service.show', compact('service', 'categories'));
     }
 
     public function edit(Service $service)
     {
-        $categories = Category::all();
+        $user = auth()->user();
+        $categories = $user->department ? $user->department->categories : [];
         return view('personal.service.edit', compact('service', 'categories'));
     }
 
@@ -69,14 +83,17 @@ class ServiceController extends Controller
     {
         $data = $request->validated();
         try {
+            DB::beginTransaction();
             $data['service_id'] = $service->id;
             $data['video'] = Storage::disk('public')->put('/videos', $data['video']);
             if (isset($data['video_tr'])) {
                 $data['video_tr'] = Storage::disk('public')->put('/videos', $data['video_tr']);
             }
             Video::create($data);
+            DB::commit();
             return redirect()->route('personal.service.show', $service->id)->with(['notification' => 'Video successfully added!']);
         } catch (\Exception $exception) {
+            DB::rollBack();
             return redirect()->back()->withErrors(['error' => 'Failed to add video. Please try again.']);
         }
     }

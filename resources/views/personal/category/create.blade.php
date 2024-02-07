@@ -37,7 +37,7 @@
                         </div>
 
                         <input type="submit" class="btn btn-primary" value="Submit">
-                        <a href="{{ route('personal.category.index') }}" type="button" class="btn bg-danger">Cancel</a>
+                        <a href="{{ route('personal.category.index') }}" type="button" class="btn btn-outline-primary">Cancel</a>
                     </form>
                 </div>
             </div>

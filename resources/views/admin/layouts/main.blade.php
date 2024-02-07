@@ -10,6 +10,10 @@
 
     <link rel="stylesheet" href="{{ asset('assets/css/backend-plugin.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/backend.css?v=1.0.0') }}">
+
+
+{{--    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />--}}
+{{--    <script src="https://cdn.plyr.io/3.6.8/plyr.js"></script>--}}
 </head>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -121,6 +125,15 @@
         bsCustomFileInput.init();
     });
 </script>
+
+
+{{--<script>--}}
+{{--    const player = new Plyr('#myVideo');--}}
+
+{{--    player.on('seeking', event => {--}}
+{{--        console.log('Video seeking');--}}
+{{--    });--}}
+{{--</script>--}}
 
 
 </body>
