@@ -6,7 +6,8 @@
             </div>
         </div>
         <div class="card-body">
-            <form action="{{ route('admin.service.addFile', $service->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.service.addFile', $service->id) }}" method="POST"
+                  enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="form-group col-6">
@@ -57,6 +58,38 @@
                     <button type="reset" class="btn btn-outline-primary mr-2">Cancel</button>
                 </div>
             </form>
+
+            <div class="card-body mt-5 ">
+                @if(count($service->files) > 0)
+                    <h4>Files</h4>
+                    <div class="row table">
+                        <table>
+                            <tbody>
+                            @foreach($service->files as $file)
+                                <tr>
+                                    <td>
+                                        <i class="fa-solid fa-file-lines" style="color: blue"></i>
+                                        <span><a href="{{ asset('storage/'.$file->file) }}"
+                                                 target="_blank">{{ $file->title }}</a></span>
+                                    </td>
+                                    <td>
+                                        <form action="{{ route('admin.file.delete', $file->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="border-0 bg-transparent">
+                                                <i class="fas fa-trash text-danger ml-4" role="button"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                @endif
+            </div>
+
         </div>
     </div>
 </div>

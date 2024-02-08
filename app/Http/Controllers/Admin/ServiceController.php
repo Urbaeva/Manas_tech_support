@@ -35,7 +35,7 @@ class ServiceController extends Controller
         $data = $request->validated();
         $data['logo'] = Storage::disk('public')->put('/logos', $data['logo']);
         Service::create($data);
-        return redirect()->route('admin.service.index');
+        return redirect()->route('admin.service.index')->with(['notification' => 'Service created successfully!']);
     }
 
     public function show(Service $service)
@@ -54,14 +54,14 @@ class ServiceController extends Controller
     {
         $data = $request->validated();
         $service->update($data);
-        return redirect()->route('admin.service.index');
+        return redirect()->route('admin.service.index')->with(['notification' => $data['title'].' updated successfully!']);
     }
 
 
     public function delete(Service $service)
     {
         $service->delete();
-        return redirect()->route('admin.service.index');
+        return redirect()->route('admin.service.index')->with(['notification' => $service['title'].'deleted!']);
     }
 
 
@@ -113,6 +113,29 @@ class ServiceController extends Controller
         } else {
             // Handle the case where the video file doesn't exist
             return response()->json(['error' => 'Video not found'], 404);
+        }
+    }
+
+    public function deleteVideo(Video $video)
+    {
+        $video->delete();
+        return redirect()->route('admin.service.show', $video->service->id)->with(['notification' => 'Video deleted successfully!']);
+    }
+
+    public function deleteImage(Image $image)
+    {
+        $image->delete();
+        return redirect()->route('admin.service.show', $image->service->id)->with(['notification' => 'Image deleted successfully!']);
+    }
+
+    public function deleteFile(File $file)
+    {
+        try {
+            $serviceId = $file->service->id;
+            $file->delete();
+            return redirect()->route('admin.service.show', $serviceId)->with(['notification' => 'File deleted successfully!']);
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'Failed to delete file. Please try again.']);
         }
     }
 }

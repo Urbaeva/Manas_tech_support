@@ -45,6 +45,14 @@
                     <button type="reset" class="btn btn-outline-primary mr-2">Cancel</button>
                 </div>
             </form>
+
+            <div class="card-body mt-5 ">
+                @foreach($service->images as $image)
+                    <img src="{{ asset('storage/'.$image->image) }}" id="image" class="mr-3">
+                @endforeach
+            </div>
+
         </div>
     </div>
+
 </div>

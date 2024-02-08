@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\User\IndexController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,16 +22,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/get-video', function () {
-    $videoPath = public_path('video/video.mp4');
+Route::group(['prefix' => 'user'], function (){
+    Route::get('/', [IndexController::class, 'index'])->name('user.index');
 
-    if (file_exists($videoPath)) {
-        // Return the video file as a response
-        return response()->file($videoPath, [
-            'Content-Type' => 'video/mp4',
-        ]);
-    } else {
-        // Handle the case where the video file doesn't exist
-        return response()->json(['error' => 'Video not found'], 404);
-    }
-})->name('get.video');
+    Route::group(['prefix' => 'department'], function (){
+        Route::get('/', [IndexController::class, 'department'])->name('user.department.index');
+        Route::get('/{category}', [IndexController::class, 'category'])->name('user.department.category');
+    });
+});

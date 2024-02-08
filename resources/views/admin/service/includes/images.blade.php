@@ -45,6 +45,26 @@
                     <button type="reset" class="btn btn-outline-primary mr-2">Cancel</button>
                 </div>
             </form>
+
+            <div class="card-body mt-5 ">
+                @foreach($service->images as $image)
+                    <img src="{{ asset('storage/'.$image->image) }}" id="image" class="mr-3">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ $image->title }}</h4>
+
+                        <form action="{{ route('admin.image.delete', $image->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="border-0 bg-transparent">
+                                <i class="fas fa-trash text-danger " role="button"></i>
+                                <span class="text-danger">Delete</span>
+                            </button>
+                        </form>
+                    </div>
+                @endforeach
+            </div>
+
         </div>
     </div>
+
 </div>

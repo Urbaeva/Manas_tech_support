@@ -6,7 +6,8 @@
             </div>
         </div>
         <div class="card-body">
-            <form action="{{ route('personal.service.addFile', $service->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('personal.service.addFile', $service->id) }}" method="POST"
+                  enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="form-group col-6">
@@ -57,6 +58,19 @@
                     <button type="reset" class="btn btn-outline-primary mr-2">Cancel</button>
                 </div>
             </form>
+
+            <div class="card-body mt-5 ">
+                <div class="row">
+                    @foreach($service->files as $file)
+                    <div class="col-sm-6 col-md-6 col-lg-3">
+                        <div class="shadow-bottom p-4 shadow-showcase text-center">
+                            <h5 style="color: blue"><a href="{{ asset('storage/'.$file->file) }}" target="_blank">{{ $file->title }}</a></h5>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

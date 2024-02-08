@@ -71,7 +71,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
              Route::post('/addImage', [ServiceController::class, 'addImage'])->name('admin.service.addImage');
              Route::post('/addFile', [ServiceController::class, 'addFile'])->name('admin.service.addFile');
         });
-
         Route::get('/get/video/{video}', [ServiceController::class, 'getVideo'])->name('admin.service.getVideo');
+
+        Route::delete('/file/{file}/delete', [ServiceController::class, 'deleteFile'])->name('admin.file.delete');
+        Route::delete('/video/{video}/delete', [ServiceController::class, 'deleteVideo'])->name('admin.video.delete');
+        Route::delete('/image/{image}/delete', [ServiceController::class, 'deleteImage'])->name('admin.image.delete');
+
     });
 });

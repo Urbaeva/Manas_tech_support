@@ -6,7 +6,7 @@
             <img src="{{ asset('assets/images/logo-dark.png') }}"
                  class="img-fluid rounded-normal d-none sidebar-light-img"
                  alt="logo">
-            <span>Manas</span>
+            <span>Manas helpit</span>
         </a>
         <div class="side-menu-bt-sidebar-1">
             <svg xmlns="http://www.w3.org/2000/svg" class="text-light wrapper-menu" width="30" fill="none"

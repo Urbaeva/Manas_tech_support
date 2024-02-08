@@ -47,5 +47,8 @@ Route::group(['prefix' => 'personal', 'middleware' => ['auth', 'personal']], fun
             Route::post('/addImage', [ServiceController::class, 'addImage'])->name('personal.service.addImage');
             Route::post('/addFile', [ServiceController::class, 'addFile'])->name('personal.service.addFile');
         });
+
+        Route::get('/get/video/{video}', [ServiceController::class, 'getVideo'])->name('personal.service.getVideo');
+
     });
 });

@@ -7,7 +7,8 @@
         </div>
         <div class="card-body">
 
-            <form action="{{ route('admin.service.addVideo', $service->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.service.addVideo', $service->id) }}" method="POST"
+                  enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="form-group col-6">
@@ -56,14 +57,31 @@
                 </div>
             </form>
 
-            @foreach($service->videos as $video)
-                <video width="640" height="360" controls>
-                    <source src="{{ route('admin.service.getVideo', $video->id) }}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            @endforeach
-
         </div>
     </div>
 
+    <div class="row">
+            @foreach($service->videos as $video)
+            <div class="col-sm-6 col-md-6 col-lg-6 mt-5">
+                <div class="card ">
+                    <video  controls>
+                        <source src="{{ route('admin.service.getVideo', $video->id) }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="card-body">
+                        <h4 class="card-title">{{ $video->title }}</h4>
+
+                        <form action="{{ route('admin.video.delete', $video->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="border-0 bg-transparent">
+                                <i class="fas fa-trash text-danger " role="button"></i>
+                                <span class="text-danger">Delete</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
 </div>

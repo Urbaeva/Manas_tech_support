@@ -12,60 +12,60 @@
                 @method('PATCH')
                 <div class="form-group row align-items-center">
                     <div class="col-md-12">
-                        <div class="profile-img-edit">
-                            <div class="crm-profile-img-edit">
-                                <img class="crm-profile-pic rounded-circle avatar-100"
-                                     src="{{  asset('storage/' . $service->logo) }}" alt="profile-pic">
-                                <div class="crm-p-image bg-primary">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24"
-                                         stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                              d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
-                                    </svg>
-                                    <input class="file-upload" type="file" accept="image/*">
-                                </div>
-                            </div>
+                        <div class="col-lg-6">
+                            <img class="crm-profile-pic " src="{{  asset('storage/' . $service->logo) }}"
+                                 alt="profile-pic">
+                        </div>
+                        <div class="col-lg-6">
+                            <p>{{ $service->description }}</p>
                         </div>
                     </div>
                 </div>
                 <div class=" row align-items-center">
-                    <div class="form-group col-sm-6">
-                        <label for="title">Title:</label>
-                        <input type="text" class="form-control" id="title" name="title" value="{{ $service->title }}">
-                    </div>
-                    <div class="form-group col-sm-6">
-                        <label for="title_tr">Title (tr):</label>
-                        <input type="text" class="form-control" id="title_tr" name="title_tr"
-                               value="{{ $service->title_tr }}">
-                    </div>
-                    <div class="form-group col-sm-6">
-                        <label for="description">Description:</label>
-                        <input type="text" class="form-control" id="description" name="description"
-                               value="{{ $service->description }}">
-                    </div>
-                    <div class="form-group col-sm-6">
-                        <label for="description_tr">Description (tr):</label>
-                        <input type="text" class="form-control" id="description_tr" name="description_tr"
-                               value="{{ $service->description_tr }}">
-                    </div>
+                    <h6>{{ $service->title }}</h6>
+                    <h6>{{ $service->title_tr }}</h6>
 
-                    <div class="form-group col-sm-6">
+                    <p>{{ $service->description }}</p>
+                    <p>{{ $service->description_tr }}</p>
 
-                    </div>
-                    <div class="form-group col-sm-6">
-                        <label>Category:</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            @foreach($categories as $category)
-                                <option
-                                    value="{{ $category->id }}" {{ $category->id == $service->category_id ? ' selected' : ''}}
-                                >{{ $category->title }}</option>
-                            @endforeach
-                        </select>
-                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
-                <a href="{{ route('admin.service.index') }}" class="btn btn-outline-primary mr-2">Cancel</a>
+                <a href="{{ route('personal.service.index') }}" class="btn btn-outline-primary mr-2">Cancel</a>
             </form>
+
+            <div class="card-body">
+                @if(isset($service->files))
+                    <div class="col-sm-12 mt-5">
+                        <h5 class="mt-5">Files</h5>
+                        @foreach($service->files as $file)
+                            <a href="{{ asset('storage/'.$file->file) }}" target="_blank">{{ $file->title }}</a>
+                        @endforeach
+                    </div>
+                @endif
+
+                @if(isset($service->videos))
+                    <h5 class="mt-5">Videos</h5>
+                    <div class="col-sm-12 mt-5">
+                        @foreach($service->videos as $video)
+                            <video width="640" height="360" controls>
+                                <source src="{{ route('personal.service.getVideo', $video->id) }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        @endforeach
+                    </div>
+                @endif
+
+                @if(isset($service->images))
+                    <div class="col-sm-12 mt-5">
+                        <h5 class="mt-5">Images</h5>
+                        @foreach($service->images as $image)
+                            <img src="{{ asset('storage/'.$image->image) }}" id="image" class="mr-3">
+                        @endforeach
+                    </div>
+                @endif
+
+            </div>
+
         </div>
     </div>
 </div>

@@ -7,7 +7,8 @@
         </div>
         <div class="card-body">
 
-            <form action="{{ route('personal.service.addVideo', $service->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('personal.service.addVideo', $service->id) }}" method="POST"
+                  enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="form-group col-6">
@@ -56,22 +57,16 @@
                 </div>
             </form>
 
-            @if ($service->videos->count() > 0)
-                <h5>Existing Videos:</h5>
-                <ul>
-                    @foreach ($service->videos as $video)
-                        <li>{{ $video->title }}</li>
-                        <video width="540" height="260" controls>
-                            <!-- Provide the source of your video file -->
-                            <source src="{{ asset('storage/' . $video->video) }}" type="video/mp4">
-                            <!-- Add additional source elements for different video formats if needed -->
-                            Your browser does not support the video tag.
-                        </video>
-                    @endforeach
-                </ul>
-            @else
-                <p>No videos found for this service.</p>
-            @endif
         </div>
+    </div>
+
+
+    <div class="col-sm-12 mt-5">
+        @foreach($service->videos as $video)
+            <video width="640" height="360" controls>
+                <source src="{{ route('personal.service.getVideo', $video->id) }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        @endforeach
     </div>
 </div>
