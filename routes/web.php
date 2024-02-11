@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\User\IndexController;
+use App\Services\Localization\LocalizationService;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,19 +16,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Route::group(
+    [
+        'prefix' => LocalizationService::locale(),
+        'middleware' => 'setLocale',
+    ],
+    function () {
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+        Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['prefix' => 'user'], function (){
-    Route::get('/', [IndexController::class, 'index'])->name('user.index');
+        Route::group(['prefix' => 'user'], function () {
+            Route::get('/', [IndexController::class, 'index'])->name('user.index');
 
-    Route::group(['prefix' => 'department'], function (){
-        Route::get('/', [IndexController::class, 'department'])->name('user.department.index');
-        Route::get('/{category}', [IndexController::class, 'category'])->name('user.department.category');
+            Route::group(['prefix' => 'departments'], function () {
+                Route::get('/{department}', [IndexController::class, 'department'])->name('user.department');
+                Route::get('/category/{category}', [IndexController::class, 'category'])->name('user.department.category');
+                Route::get('/service/{service}', [IndexController::class, 'service'])->name('user.category.service');
+                Route::get('/service/get/video/{video}', [IndexController::class, 'getVideo'])->name('user.service.getVideo');
+            });
+        });
+
     });
-});
+
+Auth::routes();

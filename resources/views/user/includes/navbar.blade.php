@@ -19,14 +19,20 @@
                             <a href="#"><i class="fa fa-linkedin"></i></a>
                             <a href="#"><i class="fa fa-pinterest-p"></i></a>
                         </div>
+
                         <div class="header__top__right__language">
-                            <img src="{{ asset('user_files/img/language.png') }}" alt="">
-                            <div>English</div>
+                            @if(app()->getLocale() == 'ky')
+                                <img style="height: 17px; width: 24px" src="{{ asset('user_files/img/kyrgyz.png') }}" alt="">
+                                <div>Kyrgyz</div>
+                            @else
+                                <img style="height: 17px; width: 24px" src="{{ asset('user_files/img/turkey.png') }}" alt="">
+                                <div>Turkish</div>
+                            @endif
                             <span class="arrow_carrot-down"></span>
-                            <ul>
-                                <li><a href="#">Spanis</a></li>
-                                <li><a href="#">English</a></li>
-                            </ul>
+                                <ul>
+                                    <li><a href="#" onclick="toKY(event)">Kyrgyz</a></li>
+                                    <li><a href="#" onclick="toTR(event)">Turkish</a></li>
+                                </ul>
                         </div>
                         <div class="header__top__right__auth">
                             <a href="#"><i class="fa fa-user"></i> Login</a>

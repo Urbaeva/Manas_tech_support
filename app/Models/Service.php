@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\HasMultilingualTitle;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Service extends Model
 {
     use HasFactory;
+    use HasMultilingualTitle;
 
     protected $table = 'services';
 
@@ -31,5 +33,14 @@ class Service extends Model
     public function files()
     {
         return $this->hasMany(File::class);
+    }
+
+    public function getDescription()
+    {
+        $lang = app()->getLocale();
+        if ($lang == 'tr'){
+            return $this->description_tr;
+        }
+        return $this->description;
     }
 }

@@ -24,7 +24,8 @@ return new class extends Migration
 
             $table->foreign('service_id', 'file_service_fk')
                 ->on('services')
-                ->references('id');
+                ->references('id')
+                ->onDelete('cascade');
         });
     }
 

@@ -48,7 +48,10 @@ class DepartmentController extends Controller
 
     public function delete(Department $department)
     {
+        if (count($department->categories) > 0) {
+            return redirect()->back()->with(['notification' => 'You cannot delete the department, because you have categories related to this department']);
+        }
         $department->delete();
-        return redirect()->route('admin.department.index');
+        return redirect()->route('admin.department.index')->with(['notification' => 'Department deleted!']);
     }
 }
