@@ -587,7 +587,8 @@ ol {
 }
 
 .hero__categories__all {
-	background: #7fad39;
+	/*background: #7fad39;*/
+	background: #224791;
 	position: relative;
 	padding: 10px 25px 10px 40px;
 	cursor: pointer;
@@ -736,7 +737,7 @@ ol {
 
 .hero__search__phone__icon {
 	font-size: 18px;
-	color: #7fad39;
+	color: #165065;
 	height: 50px;
 	width: 50px;
 	background: #f5f5f5;
