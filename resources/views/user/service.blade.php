@@ -1,6 +1,6 @@
 @extends('user.layouts.main')
 @section('humberger_logo')
-        <h3><b>{{ $service->getTitle() }}</b></h3>
+    <h3><b>{{ $service->getTitle() }}</b></h3>
 @endsection
 
 @section('content')
@@ -13,15 +13,12 @@
                     <div class="hero__categories">
                         <div class="hero__categories__all">
                             <i class="fa fa-bars"></i>
-                            <span>All services</span>
+                            <span>{{ trans('pathLang.all_services') }}</span>
                         </div>
                         <ul>
-                            {{--                            @foreach($category->services as $service)--}}
-                            <li><a href="#">efdenkjf</a></li>
-                            <li><a href="#">efdenkjfklf</a></li>
-                            <li><a href="#">efdenkjfklf</a></li>
-                            <li><a href="#">efdenkjfklfe</a></li>
-                            {{--                            @endforeach--}}
+                            @foreach($service->category->services as $service_o)
+                                <li><a href="#">{{ $service_o->getTitle() }}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -34,7 +31,7 @@
                                     <span class="arrow_carrot-down"></span>
                                 </div>
                                 <input type="text" placeholder="What do yo u need?">
-                                <button type="submit" class="site-btn">SEARCH</button>
+                                <button type="submit" class="site-btn">{{ __('pathLang.search') }}</button>
                             </form>
                         </div>
                         <div class="hero__search__phone">
@@ -54,15 +51,15 @@
     <!-- Hero Section End -->
 
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="{{ asset('user_files/img/breadcrumb.jpg') }}">
+    <section class="breadcrumb-section set-bg" data-setbg="{{ asset('user_files/img/green.jpeg') }}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Blog</h2>
+                        <h2>{{ $service->getTitle() }}</h2>
                         <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
-                            <span>Blog</span>
+                            <a href="{{ route('user.index') }}">Home</a>
+                            <span>{{ $service->getTitle() }}</span>
                         </div>
                     </div>
                 </div>
@@ -77,63 +74,33 @@
             <div class="row">
                 <div class="col-lg-3 col-md-5">
                     <div class="blog__sidebar">
-                        <div class="blog__sidebar__search">
-                            <form action="#">
-                                <input type="text" placeholder="Search...">
-                                <button type="submit"><span class="icon_search"></span></button>
-                            </form>
-                        </div>
                         <div class="blog__sidebar__item">
-                            <h4>Categories</h4>
-                            <ul>
-                                <li><a href="#">All</a></li>
-                                <li><a href="#">Beauty (20)</a></li>
-                                <li><a href="#">Food (5)</a></li>
-                                <li><a href="#">Life Style (9)</a></li>
-                                <li><a href="#">Travel (10)</a></li>
-                            </ul>
-                        </div>
-                        <div class="blog__sidebar__item">
-                            <h4>Recent News</h4>
+                            <h4>{{ $service->category->getTitle() }}</h4>
                             <div class="blog__sidebar__recent">
-                                <a href="#" class="blog__sidebar__recent__item">
-                                    <div class="blog__sidebar__recent__item__pic">
-                                        <img src="{{ asset('user_files/img/blog/sidebar/sr-1.jpg') }}" alt="">
-                                    </div>
-                                    <div class="blog__sidebar__recent__item__text">
-                                        <h6>09 Kinds Of Vegetables<br/> Protect The Liver</h6>
-                                        <span>MAR 05, 2019</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="blog__sidebar__recent__item">
-                                    <div class="blog__sidebar__recent__item__pic">
-                                        <img src="{{ asset('user_files/img/blog/sidebar/sr-2.jpg') }}" alt="">
-                                    </div>
-                                    <div class="blog__sidebar__recent__item__text">
-                                        <h6>Tips You To Balance<br/> Nutrition Meal Day</h6>
-                                        <span>MAR 05, 2019</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="blog__sidebar__recent__item">
-                                    <div class="blog__sidebar__recent__item__pic">
-                                        <img src="{{ asset('user_files/img/blog/sidebar/sr-3.jpg') }}" alt="">
-                                    </div>
-                                    <div class="blog__sidebar__recent__item__text">
-                                        <h6>4 Principles Help You Lose <br/>Weight With Vegetables</h6>
-                                        <span>MAR 05, 2019</span>
-                                    </div>
-                                </a>
+                                @foreach($service->category->services as $service_o )
+                                    <a href="{{ route('user.category.service', $service_o->id) }}"
+                                       class="blog__sidebar__recent__item">
+                                        <div class="blog__sidebar__recent__item__pic">
+                                            <img style="width: 70px; height: 70px; border: 2px solid #ddd"
+                                                 src="{{ asset('storage/'.$service_o->logo) }}" alt="">
+                                        </div>
+                                        <div class="blog__sidebar__recent__item__text">
+                                            <h6>{{ $service_o->getTitle() }}</h6>
+                                            @php
+                                                $date = \Illuminate\Support\Carbon::parse($service->created_at);
+                                            @endphp
+                                            <span style="font-size: 10px;">{{ $date->format('F') }} {{ $date->day }}, {{ $date->year }}</span>
+                                        </div>
+                                    </a>
+                                @endforeach
                             </div>
                         </div>
                         <div class="blog__sidebar__item">
-                            <h4>Search By</h4>
+                            <h4>All categories</h4>
                             <div class="blog__sidebar__item__tags">
-                                <a href="#">Apple</a>
-                                <a href="#">Beauty</a>
-                                <a href="#">Vegetables</a>
-                                <a href="#">Fruit</a>
-                                <a href="#">Healthy Food</a>
-                                <a href="#">Lifestyle</a>
+                                @foreach($categories as $category)
+                                    <a href="{{ route('user.department.category', $category->id) }}">{{ $category->getTitle() }}</a>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -144,15 +111,14 @@
                         @foreach($service->videos as $video)
                             <div class="col-sm-6">
                                 <div class="blog__item">
-                                        <div class="blog__item__pic">
-                                        <a href="#">
+                                    <div class="blog__item__pic">
+                                        <a href="{{ route('user.service.video', $video->id) }}">
                                             <video controls style="height: 250px; width: 380px">
                                                 <source src="{{ route('user.service.getVideo', $video->id) }}"
                                                         type="video/mp4">
                                                 Your browser does not support the video tag.
                                             </video>
                                         </a>
-                                        {{--                                        <img src="{{ asset('storage/'.$service->logo) }}" alt="">--}}
                                     </div>
                                     <div class="blog__item__text">
                                         <ul>
@@ -164,7 +130,6 @@
                                     </div>
                                 </div>
                             </div>
-{{--                            <div style="margin-left: 2px;"></div>--}}
                         @endforeach
 
                         <div class="col-lg-12">

@@ -55,7 +55,7 @@
                                             <img id="logo" src="{{ asset('storage/' . $service->logo) }}" class="mb-3">
                                         </div>
                                         <div class="custom-file mb-3">
-                                            <input type="file" class="custom-file-input" id="logo" name="logo">
+                                            <input type="file" class="custom-file-input" id="logo" name="logo" onchange="displayImage(this, 'logo')">
                                             <label class="custom-file-label" for="logo">logo</label>
                                         </div>
                                         @error('logo')

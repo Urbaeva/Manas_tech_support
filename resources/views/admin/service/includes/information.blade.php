@@ -65,7 +65,7 @@
                     <div class="col-sm-12 mt-5">
                         <h4 class="mt-5">Images</h4>
                         @foreach($service->images as $image)
-                            <img src="{{ asset('storage/'.$image->image) }}" id="image" class="mr-3">
+                            <img style="border: 2px solid #ddd" src="{{ asset('storage/'.$image->image) }}" id="image" class="mr-3">
                         @endforeach
                     </div>
                 @endif

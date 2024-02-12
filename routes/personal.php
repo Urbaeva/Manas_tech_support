@@ -8,6 +8,7 @@
 */
 
 
+use App\Http\Controllers\ActionController;
 use App\Http\Controllers\Personal\CategoryController;
 use App\Http\Controllers\Personal\IndexController;
 use App\Http\Controllers\Personal\ServiceController;
@@ -43,12 +44,16 @@ Route::group(['prefix' => 'personal', 'middleware' => ['auth', 'personal']], fun
         Route::get('/{service}', [ServiceController::class, 'show'])->name('personal.service.show');
 
         Route::group(['prefix' => '/{service}'], function (){
-            Route::post('/addVideo', [ServiceController::class, 'addVideo'])->name('personal.service.addVideo');
-            Route::post('/addImage', [ServiceController::class, 'addImage'])->name('personal.service.addImage');
-            Route::post('/addFile', [ServiceController::class, 'addFile'])->name('personal.service.addFile');
+            Route::post('/addVideo', [ActionController::class, 'addVideo'])->name('personal.service.addVideo');
+            Route::post('/addImage', [ActionController::class, 'addImage'])->name('personal.service.addImage');
+            Route::post('/addFile', [ActionController::class, 'addFile'])->name('personal.service.addFile');
         });
 
-        Route::get('/get/video/{video}', [ServiceController::class, 'getVideo'])->name('personal.service.getVideo');
+        Route::get('/get/video/{video}', [ActionController::class, 'getVideo'])->name('personal.service.getVideo');
+
+        Route::delete('/file/{file}/delete', [ActionController::class, 'deleteFile'])->name('personal.file.delete');
+        Route::delete('/video/{video}/delete', [ActionController::class, 'deleteVideo'])->name('personal.video.delete');
+        Route::delete('/image/{image}/delete', [ActionController::class, 'deleteImage'])->name('personal.image.delete');
 
     });
 });

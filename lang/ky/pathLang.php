@@ -11,6 +11,8 @@ return [
     'all_departments'=>'Департементтер',
     'all_categories'=>'Категориялар',
     'all_services'=>'Кызматтар',
+    'videos'=>'Видеолор',
+    'all_videos'=>'Бардык видеолор',
 
 
 ];

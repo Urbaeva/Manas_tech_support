@@ -11,9 +11,6 @@
     <link rel="stylesheet" href="{{ asset('assets/css/backend-plugin.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/backend.css?v=1.0.0') }}">
 
-
-{{--    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />--}}
-{{--    <script src="https://cdn.plyr.io/3.6.8/plyr.js"></script>--}}
 </head>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -149,6 +146,20 @@
     function close_notification()
     {
         document.getElementById('notification_id').outerHTML = '';
+    }
+</script>
+
+
+<script>
+    function displayImage(input, imageId){
+        var file = input.files[0];
+        if (file){
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById(imageId).src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
     }
 </script>
 

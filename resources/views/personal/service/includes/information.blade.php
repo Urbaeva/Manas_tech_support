@@ -6,47 +6,54 @@
             </div>
         </div>
         <div class="card-body">
-            <form action="{{ route('personal.service.update', $service->id) }}" method="POST"
-                  enctype="multipart/form-data">
-                @csrf
-                @method('PATCH')
-                <div class="form-group row align-items-center">
-                    <div class="col-md-12">
-                        <div class="col-lg-6">
-                            <img class="crm-profile-pic " src="{{  asset('storage/' . $service->logo) }}"
-                                 alt="profile-pic">
-                        </div>
-                        <div class="col-lg-6">
-                            <p>{{ $service->description }}</p>
-                        </div>
+            <div class="row align-items-center">
+                <div class="col-md-12">
+                    <div class="col-lg-6">
+                        <img class="crm-profile-pic " src="{{  asset('storage/' . $service->logo) }}"
+                             alt="profile-pic">
                     </div>
                 </div>
-                <div class=" row align-items-center">
+            </div>
+            <div class=" row align-items mt-5">
+                <div class="col-6">
                     <h6>{{ $service->title }}</h6>
-                    <h6>{{ $service->title_tr }}</h6>
-
-                    <p>{{ $service->description }}</p>
-                    <p>{{ $service->description_tr }}</p>
-
+                    <p class="mt-2">{{ $service->description }}</p>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <a href="{{ route('personal.service.index') }}" class="btn btn-outline-primary mr-2">Cancel</a>
-            </form>
+                <div class="col-6">
+                    <h6>{{ $service->title_tr }}</h6>
+                    <p class="mt-2">{{ $service->description_tr }}</p>
+                </div>
 
-            <div class="card-body">
-                @if(isset($service->files))
-                    <div class="col-sm-12 mt-5">
-                        <h5 class="mt-5">Files</h5>
-                        @foreach($service->files as $file)
-                            <a href="{{ asset('storage/'.$file->file) }}" target="_blank">{{ $file->title }}</a>
-                        @endforeach
+            </div>
+
+
+            <div class="card-body mt-5">
+                @if(count($service->files) > 0)
+                    <h4>Files</h4>
+                    <div class="row table">
+                        <table>
+                            <tbody>
+                            @foreach($service->files as $file)
+                                <div class="">
+                                    <tr>
+                                        <td>
+                                            <i class="fa-solid fa-file-lines" style="color: blue"></i>
+                                            <span><a href="{{ asset('storage/'.$file->file) }}"
+                                                     target="_blank">{{ $file->title }}</a></span>
+                                        </td>
+                                    </tr>
+                                </div>
+                            @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 @endif
 
-                @if(isset($service->videos))
-                    <h5 class="mt-5">Videos</h5>
+                @if(count($service->videos) > 0)
+                    <h4 class="mt-5">Videos</h4>
                     <div class="col-sm-12 mt-5">
                         @foreach($service->videos as $video)
+                            <h5 class="mt-3">{{ $video->getTitle() }}</h5>
                             <video width="640" height="360" controls>
                                 <source src="{{ route('personal.service.getVideo', $video->id) }}" type="video/mp4">
                                 Your browser does not support the video tag.
@@ -55,11 +62,13 @@
                     </div>
                 @endif
 
-                @if(isset($service->images))
+                @if(count($service->images) > 0)
                     <div class="col-sm-12 mt-5">
-                        <h5 class="mt-5">Images</h5>
+                        <h4 class="mt-5">Images</h4>
                         @foreach($service->images as $image)
-                            <img src="{{ asset('storage/'.$image->image) }}" id="image" class="mr-3">
+                            <img style="border: 2px solid #ddd" src="{{ asset('storage/'.$image->image) }}"
+                                 id="image"
+                                 class="mr-3">
                         @endforeach
                     </div>
                 @endif

@@ -60,13 +60,28 @@
         </div>
     </div>
 
-
-    <div class="col-sm-12 mt-5">
+    <div class="row">
         @foreach($service->videos as $video)
-            <video width="640" height="360" controls>
-                <source src="{{ route('personal.service.getVideo', $video->id) }}" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+            <div class="col-sm-6 col-md-6 col-lg-6 mt-5">
+                <div class="card ">
+                    <video  controls>
+                        <source src="{{ route('personal.service.getVideo', $video->id) }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="card-body">
+                        <h4 class="card-title">{{ $video->title }}</h4>
+
+                        <form action="{{ route('personal.video.delete', $video->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="border-0 bg-transparent">
+                                <i class="fas fa-trash text-danger " role="button"></i>
+                                <span class="text-danger">Delete</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         @endforeach
     </div>
 </div>

@@ -46,9 +46,17 @@
                 </div>
             </form>
 
-            <div class="card-body mt-5 ">
+            <div class="card-body mt-5 " >
                 @foreach($service->images as $image)
-                    <img src="{{ asset('storage/'.$image->image) }}" id="image" class="mr-3">
+                    <img style="border: 2px solid #ddd" src="{{ asset('storage/'.$image->image) }}" id="image" class="mr-3"><h4 class="card-title">{{ $image->title }}</h4>
+                    <form action="{{ route('personal.image.delete', $image->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="border-0 bg-transparent">
+                            <i class="fas fa-trash text-danger " role="button"></i>
+                            <span class="text-danger">Delete</span>
+                        </button>
+                    </form>
                 @endforeach
             </div>
 

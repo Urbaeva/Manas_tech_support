@@ -60,15 +60,34 @@
             </form>
 
             <div class="card-body mt-5 ">
-                <div class="row">
-                    @foreach($service->files as $file)
-                    <div class="col-sm-6 col-md-6 col-lg-3">
-                        <div class="shadow-bottom p-4 shadow-showcase text-center">
-                            <h5 style="color: blue"><a href="{{ asset('storage/'.$file->file) }}" target="_blank">{{ $file->title }}</a></h5>
-                        </div>
+                @if(count($service->files) > 0)
+                    <h4>Files</h4>
+                    <div class="row table">
+                        <table>
+                            <tbody>
+                            @foreach($service->files as $file)
+                                <tr>
+                                    <td>
+                                        <i class="fa-solid fa-file-lines" style="color: blue"></i>
+                                        <span><a href="{{ asset('storage/'.$file->file) }}"
+                                                 target="_blank">{{ $file->title }}</a></span>
+                                    </td>
+                                    <td>
+                                        <form action="{{ route('personal.file.delete', $file->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="border-0 bg-transparent">
+                                                <i class="fas fa-trash text-danger ml-4" role="button"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+
+                            @endforeach
+                            </tbody>
+                        </table>
                     </div>
-                    @endforeach
-                </div>
+                @endif
             </div>
 
         </div>

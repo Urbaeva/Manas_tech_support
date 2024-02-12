@@ -16,7 +16,9 @@
                         </div>
                         <ul>
                             @foreach($category->services as $service)
-                                <li><a href="{{ route('user.category.service', $service->id) }}">{{ $service->getTitle() }}</a></li>
+                                <li>
+                                    <a href="{{ route('user.category.service', $service->id) }}">{{ $service->getTitle() }}</a>
+                                </li>
                             @endforeach
                         </ul>
                     </div>
@@ -65,21 +67,25 @@
                 @foreach($category->services as $service)
                     <div class="col-lg-4 col-md-4 col-sm-6">
                         <div class="blog__item">
-                            <div class="blog__item__pic">
-                                <img style="border: 2px solid #ddd" src="{{ asset('storage/'.$service->logo) }}" alt="">
-                            </div>
-                            <div class="blog__item__text">
-                                <ul>
-                                    @php
-                                        $date = \Illuminate\Support\Carbon::parse($service->created_at);
-                                    @endphp
-                                    <li>
-                                        <i class="fa fa-calendar-o"></i> {{ $date->format('F') }} {{ $date->day }},    {{ $date->year }} • {{$date->format('H:i')}}</li>
-                                    <li><i class="fa fa-comment-o"></i> 5</li>
-                                </ul>
-                                <h5><a href="#">{{ $service->getTitle() }}</a></h5>
-                                <p>{{ $service->getDescription() }}</p>
-                            </div>
+                            <a href="{{ route('user.category.service', $service->id) }}">
+                                <div class="blog__item__pic">
+                                    <img style="border: 2px solid #ddd" src="{{ asset('storage/'.$service->logo) }}"
+                                         alt="">
+                                </div>
+                                <div class="blog__item__text">
+                                    <ul>
+                                        @php
+                                            $date = \Illuminate\Support\Carbon::parse($service->created_at);
+                                        @endphp
+                                        <li><i class="fa fa-calendar-o"></i> {{ $date->format('F') }} {{ $date->day }}
+                                            , {{ $date->year }} </li>
+                                        <li class="ml-5"><i
+                                                class="fa fa-th-list"></i> {{ $service->category->getTitle()  }}</li>
+                                    </ul>
+                                    <h5>{{ $service->getTitle() }}</h5>
+                                    <p>{!! $service->getDescription() !!}</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 @endforeach
@@ -87,7 +93,5 @@
         </div>
     </section>
     <!-- Blog Section End -->
-
-    @include('user.includes.services')
 
 @endsection

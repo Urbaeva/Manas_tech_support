@@ -11,5 +11,8 @@ return [
     'all_departments'=>'Tüm bölümler',
     'all_categories'=>'Tüm kategoriler',
     'all_services'=>'Tüm hizmetler',
+    'videos'=>'Videolar',
+    'all_videos'=>'Tüm videolar',
+
 
 ];

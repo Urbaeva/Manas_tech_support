@@ -16,12 +16,19 @@ class IndexController extends Controller
     {
         $departments = Department::all();
         $services = Service::all();
-        return view('user.index', compact('departments', 'services'));
+        $all_videos = Video::all();
+        return view('user.index', compact('departments', 'services', 'all_videos'));
     }
 
     public function department(Department $department)
     {
-        return view('user.department', compact('department'));
+        $categories = $department->categories;
+        $services = [];
+        foreach ($categories as $category){
+            $services[] = $category->services;
+        }
+        $services = collect($services)->flatten();
+        return view('user.department', compact('department', 'services'));
     }
 
     public function category(Category $category)
@@ -31,18 +38,13 @@ class IndexController extends Controller
 
     public function service(Service $service)
     {
-        return view('user.service', compact('service'));
+        $categories = Category::all();
+        return view('user.service', compact('service', 'categories'));
     }
 
-    public function getVideo(Video $video)
+    public function video(Video $video)
     {
-        $video_path = public_path('storage/'.$video->video);
-        if (file_exists($video_path)) {
-            return response()->file($video_path, [
-                'Content-Type' => 'video/mp4'
-            ]);
-        } else {
-            return response()->json(['error' => 'Video not found'], 404);
-        }
+        $category = $video->service->category;
+        return view('user.video', compact('video', 'category'));
     }
 }

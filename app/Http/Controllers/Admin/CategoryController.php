@@ -52,7 +52,7 @@ class CategoryController extends Controller
     public function delete(Category $category)
     {
         if (count($category->services) > 0) {
-            return redirect()->back(['notification' => 'You cannot delete the category, because you have services related to this category']);
+            return redirect()->back()->with(['notification' => 'You cannot delete the category, because you have services related to this category']);
         }
         $category->delete();
         return redirect()->route('admin.category.index')->with(['notification' => 'Category deleted!']);

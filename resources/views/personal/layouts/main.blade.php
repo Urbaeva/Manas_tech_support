@@ -29,6 +29,25 @@
     @include('personal.includes.sidebar')
     @include('personal.includes.navbar')
     <div class="content-page">
+        @if(session('notification'))
+            <div class="toast fade show bg-success text-white border-0 rounded p-2 mt-3" role="alert"
+                 aria-live="assertive" aria-atomic="true" id="notification_id">
+                <div class="toast-header bg-success text-white">
+                    <svg class="bd-placeholder-img rounded mr-2" width="20" height="20"
+                         xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
+                         role="img">
+                        <rect width="100%" height="100%" fill="#fff"></rect>
+                    </svg>
+                    <strong class="mr-auto text-white">Notification</strong>
+                    <button type="button" class="ml-2 mb-1 close text-white" data-dismiss="toast"
+                            aria-label="Close"><span aria-hidden="true" onclick="close_notification()">×</span>
+                    </button>
+                </div>
+                <div class="toast-body">
+                    {{session('notification')}}
+                </div>
+            </div>
+        @endif
         @yield('content')
     </div>
 </div>
@@ -122,6 +141,25 @@
     });
 </script>
 
+<script>
+    function close_notification()
+    {
+        document.getElementById('notification_id').outerHTML = '';
+    }
+</script>
+
+<script>
+    function displayImage(input, imageId){
+        var file = input.files[0];
+        if (file){
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById(imageId).src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
 
 </body>
 </html>

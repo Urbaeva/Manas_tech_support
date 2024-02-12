@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActionController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\IndexController;
@@ -67,15 +68,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
         Route::get('/{service}', [ServiceController::class, 'show'])->name('admin.service.show');
 
         Route::group(['prefix' => '/{service}'], function (){
-             Route::post('/addVideo', [ServiceController::class, 'addVideo'])->name('admin.service.addVideo');
-             Route::post('/addImage', [ServiceController::class, 'addImage'])->name('admin.service.addImage');
-             Route::post('/addFile', [ServiceController::class, 'addFile'])->name('admin.service.addFile');
+             Route::post('/addVideo', [ActionController::class, 'addVideo'])->name('admin.service.addVideo');
+             Route::post('/addImage', [ActionController::class, 'addImage'])->name('admin.service.addImage');
+             Route::post('/addFile', [ActionController::class, 'addFile'])->name('admin.service.addFile');
         });
-        Route::get('/get/video/{video}', [ServiceController::class, 'getVideo'])->name('admin.service.getVideo');
 
-        Route::delete('/file/{file}/delete', [ServiceController::class, 'deleteFile'])->name('admin.file.delete');
-        Route::delete('/video/{video}/delete', [ServiceController::class, 'deleteVideo'])->name('admin.video.delete');
-        Route::delete('/image/{image}/delete', [ServiceController::class, 'deleteImage'])->name('admin.image.delete');
+        Route::get('/get/video/{video}', [ActionController::class, 'getVideo'])->name('admin.service.getVideo');
+        Route::delete('/file/{file}/delete', [ActionController::class, 'deleteFile'])->name('admin.file.delete');
+        Route::delete('/video/{video}/delete', [ActionController::class, 'deleteVideo'])->name('admin.video.delete');
+        Route::delete('/image/{image}/delete', [ActionController::class, 'deleteImage'])->name('admin.image.delete');
 
     });
 });

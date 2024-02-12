@@ -48,7 +48,7 @@
 
             <div class="card-body mt-5 ">
                 @foreach($service->images as $image)
-                    <img src="{{ asset('storage/'.$image->image) }}" id="image" class="mr-3"><h4 class="card-title">{{ $image->title }}</h4>
+                    <img style="border: 2px solid #ddd" src="{{ asset('storage/'.$image->image) }}" id="image" class="mr-3"><h4 class="card-title">{{ $image->title }}</h4>
                     <form action="{{ route('admin.image.delete', $image->id) }}" method="POST">
                         @csrf
                         @method('DELETE')

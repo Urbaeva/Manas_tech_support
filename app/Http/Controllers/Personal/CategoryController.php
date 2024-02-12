@@ -24,7 +24,6 @@ class CategoryController extends Controller
         return view('personal.category.create');
     }
 
-
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
@@ -34,10 +33,10 @@ class CategoryController extends Controller
             $data['department_id'] = $user->department->id;
             Category::create($data);
             DB::commit();
-            return redirect()->route('personal.category.index');
+            return redirect()->route('personal.category.index')->with(['notification' => 'Category created!']);
         } catch (\Exception $exception){
             DB::rollBack();
-            dd($exception->getMessage());
+            return redirect()->back()->with(['notification' => $exception->getMessage()]);
         }
     }
 
@@ -55,14 +54,17 @@ class CategoryController extends Controller
     {
         $data = $request->validated();
         $category->update($data);
-        return redirect()->route('personal.category.index');
+        return redirect()->route('personal.category.index')->with(['notification' => 'Category updated!']);
     }
 
 
     public function delete(Category $category)
     {
+        if (count($category->services) > 0) {
+            return redirect()->back()->with(['notification' => 'You cannot delete the category, because you have services related to this category']);
+        }
         $category->delete();
-        return redirect()->route('personal.category.index');
+        return redirect()->route('personal.category.index')->with(['notification' => 'Category deleted!']);
     }
 
 

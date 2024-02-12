@@ -3,18 +3,11 @@
 namespace App\Http\Controllers\Personal;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Service\FileRequest;
-use App\Http\Requests\Admin\Service\ImageRequest;
 use App\Http\Requests\Admin\Service\StoreRequest;
 use App\Http\Requests\Admin\Service\UpdateRequest;
-use App\Http\Requests\Admin\Service\VideoRequest;
-use App\Models\Category;
-use App\Models\File;
-use App\Models\Image;
 use App\Models\Service;
-use App\Models\Video;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Mockery\Exception;
 
 class ServiceController extends Controller
 {
@@ -66,9 +59,17 @@ class ServiceController extends Controller
 
     public function update(UpdateRequest $request, Service $service)
     {
-        $data = $request->validated();
-        $service->update($data);
-        return redirect()->route('personal.service.index');
+        try {
+            $data = $request->validated();
+            if (isset($data['logo'])) {
+                $data['logo'] = Storage::disk('public')->put('/logos', $data['logo']);
+            }
+            $service->update($data);
+            return redirect()->route('personal.service.index')->with(['notification' => 'Service updated!']);
+        } catch (Exception $exception){
+            return redirect()->back()->with(['notification' => $exception->getMessage()]);
+        }
+
     }
 
 
@@ -78,58 +79,4 @@ class ServiceController extends Controller
         return redirect()->route('personal.service.index');
     }
 
-
-    public function addVideo(VideoRequest $request, Service $service)
-    {
-        $data = $request->validated();
-        try {
-            DB::beginTransaction();
-            $data['service_id'] = $service->id;
-            $data['video'] = Storage::disk('public')->put('/videos', $data['video']);
-            if (isset($data['video_tr'])) {
-                $data['video_tr'] = Storage::disk('public')->put('/videos', $data['video_tr']);
-            }
-            Video::create($data);
-            DB::commit();
-            return redirect()->route('personal.service.show', $service->id)->with(['notification' => 'Video successfully added!']);
-        } catch (\Exception $exception) {
-            DB::rollBack();
-            return redirect()->back()->withErrors(['error' => 'Failed to add video. Please try again.']);
-        }
-    }
-
-    public function addImage(ImageRequest $request, Service $service)
-    {
-        $data = $request->validated();
-        $data['service_id'] = $service->id;
-        $data['image'] = Storage::disk('public')->put('/images', $data['image']);
-        Image::create($data);
-        return redirect()->route('personal.service.show', $service->id)->with(['notification' => 'Image successfully added!']);
-    }
-
-    public function addFile(FileRequest $request, Service $service)
-    {
-        $data = $request->validated();
-        $data['service_id'] = $service->id;
-        $data['file'] = Storage::disk('public')->put('/files', $data['file']);
-        if (isset($data['file_tr'])) {
-            $data['file_tr'] = Storage::disk('public')->put('/files', $data['file_tr']);
-        }
-        File::create($data);
-        return redirect()->route('personal.service.show', $service->id)->with(['notification' => 'File successfully added!']);
-    }
-
-    public function getVideo(Video $video)
-    {
-        $video_path = public_path('storage/'.$video->video);
-        if (file_exists($video_path)) {
-            // Return the video file as a response
-            return response()->file($video_path, [
-                'Content-Type' => 'video/mp4',
-            ]);
-        } else {
-            // Handle the case where the video file doesn't exist
-            return response()->json(['error' => 'Video not found'], 404);
-        }
-    }
 }
