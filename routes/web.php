@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActionController;
 use App\Http\Controllers\User\IndexController;
 use App\Services\Localization\LocalizationService;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 
 
 Route::get('/', function () {
@@ -38,7 +38,8 @@ Route::group(
                 Route::get('/{department}', [IndexController::class, 'department'])->name('user.department');
                 Route::get('/category/{category}', [IndexController::class, 'category'])->name('user.department.category');
                 Route::get('/service/{service}', [IndexController::class, 'service'])->name('user.category.service');
-                Route::get('/service/get/video/{video}', [IndexController::class, 'getVideo'])->name('user.service.getVideo');
+                Route::get('/service/video/{video}', [IndexController::class, 'video'])->name('user.service.video');
+                Route::get('/service/get/video/{video}', [ActionController::class, 'getVideo'])->name('user.service.getVideo');
             });
         });
 
