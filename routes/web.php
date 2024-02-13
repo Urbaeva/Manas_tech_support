@@ -41,8 +41,10 @@ Route::group(
                 Route::get('/service/video/{video}', [IndexController::class, 'video'])->name('user.service.video');
                 Route::get('/service/get/video/{video}', [ActionController::class, 'getVideo'])->name('user.service.getVideo');
             });
-        });
 
+
+            Route::get('/getQr', [ActionController::class, 'getQrCode'])->name('getqr');
+        });
     });
 
 Auth::routes();

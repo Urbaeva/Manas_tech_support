@@ -31,7 +31,7 @@
                                     <span class="arrow_carrot-down"></span>
                                 </div>
                                 <input type="text" placeholder="What do yo u need?">
-                                <button type="submit" class="site-btn">{{ __('pathLang.search') }}</button>
+                                <button  style="background: #224791" type="submit" class="site-btn">{{ __('pathLang.search') }}</button>
                             </form>
                         </div>
                         <div class="hero__search__phone">

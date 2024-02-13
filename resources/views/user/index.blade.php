@@ -86,7 +86,7 @@
                 @foreach($all_videos as $video)
                     <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
                         <div class="featured__item">
-                            <video controls style="width: 270px; height: 270px;">
+                            <video controls style="height: 300px;">
                                 <source src="{{ route('user.service.getVideo', $video->id) }}"
                                         type="video/mp4">
                                 Your browser does not support the video tag.

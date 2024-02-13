@@ -32,7 +32,7 @@
                                     <span class="arrow_carrot-down"></span>
                                 </div>
                                 <input type="text" placeholder="What do yo u need?">
-                                <button type="submit" class="site-btn">{{ trans('pathLang.search') }}</button>
+                                <button  style="background: #224791" type="submit" class="site-btn">{{ trans('pathLang.search') }}</button>
                             </form>
                         </div>
                         <div class="hero__search__phone">
@@ -60,7 +60,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>{{ $department->getTitle() }} din services</h2>
+                        <h2> {{ __('pathLang.all_services') }} </h2>
                     </div>
                 </div>
             </div>

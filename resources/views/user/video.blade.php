@@ -32,7 +32,8 @@
                                     <span class="arrow_carrot-down"></span>
                                 </div>
                                 <input type="text" placeholder="What do yo u need?">
-                                <button type="submit" class="site-btn">SEARCH</button>
+                                <button style="background: #224791" type="submit"
+                                        class="site-btn">{{ __('pathLang.search') }}</button>
                             </form>
                         </div>
                         <div class="hero__search__phone">
@@ -64,7 +65,8 @@
                             <h4>Other videos</h4>
                             <div class="blog__sidebar__recent">
                                 @foreach($video->service->videos as $video_o)
-                                    <a href="{{ route('user.service.getVideo', $video_o->id) }}" class="blog__sidebar__recent__item">
+                                    <a href="{{ route('user.service.getVideo', $video_o->id) }}"
+                                       class="blog__sidebar__recent__item">
                                         <div class="blog__sidebar__recent__item__pic">
                                             <img style="width: 70px; height: 70px; border: 2px solid #ddd"
                                                  src="{{ asset('storage/'.$video_o->service->logo) }}" alt="">
@@ -85,7 +87,7 @@
                             <h4>Categories</h4>
                             <div class="blog__sidebar__item__tags">
                                 @foreach($category->department->categories as $category_o)
-                                    <a href="#">{{ $category_o->getTitle() }}</a>
+                                    <a href="{{ route('user.department.category', $category_o->id) }}">{{ $category_o->getTitle() }}</a>
                                 @endforeach
                             </div>
                         </div>
@@ -93,7 +95,9 @@
                 </div>
                 <div class="col-lg-8 col-md-7 order-md-1 order-1">
                     <div class="blog__details__text">
-                        <h3 class="text-center">{{ $video->getTitle() }}</h3>
+                        <a href="{{ route('user.service.getVideo', $video_o->id) }}">
+                            <h3 class="text-center">{{ $video->getTitle() }}</h3>
+                        </a>
                         <video controls style="width: 769px; height: 647px;">
                             <source src="{{ route('user.service.getVideo', $video->id) }}"
                                     type="video/mp4">
@@ -156,7 +160,8 @@
                     <div class="col-lg-4 col-md-4 col-sm-6">
                         <div class="blog__item">
                             <div class="blog__item__pic">
-                                <img style="border: 2px solid #ddd;" src="{{ asset('storage/'.$service->logo) }}" alt="">
+                                <img style="border: 2px solid #ddd;" src="{{ asset('storage/'.$service->logo) }}"
+                                     alt="">
                             </div>
                             <div class="blog__item__text">
                                 <ul>
