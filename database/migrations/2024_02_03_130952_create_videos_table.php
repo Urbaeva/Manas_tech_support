@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('title_tr');
             $table->string('video')->nullable();
             $table->string('video_tr')->nullable();
+            $table->unsignedBigInteger('views')->default(0);
             $table->unsignedBigInteger('service_id');
             $table->timestamps();
 

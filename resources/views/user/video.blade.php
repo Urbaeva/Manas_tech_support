@@ -95,10 +95,10 @@
                 </div>
                 <div class="col-lg-8 col-md-7 order-md-1 order-1">
                     <div class="blog__details__text">
-                        <a href="{{ route('user.service.getVideo', $video_o->id) }}">
+                        <a href="{{ route('user.service.getVideo', $video->id) }}">
                             <h3 class="text-center">{{ $video->getTitle() }}</h3>
                         </a>
-                        <video controls style="width: 769px; height: 647px;">
+                        <video controls style="width: 769px; height: 647px;" onclick="clickToVideo('{{$video->id}}')">
                             <source src="{{ route('user.service.getVideo', $video->id) }}"
                                     type="video/mp4">
                             Your browser does not support the video tag.
@@ -180,6 +180,62 @@
             </div>
         </div>
     </section>
+
+    <script>
+        let session = "{{csrf_token()}}";
+        let watched_videos = localStorage.getItem('watched_videos');
+        function clickToVideo(video)
+        {
+            if(watched_videos)
+            {
+                if(typeof watched_videos === 'string')
+                {
+                    watched_videos = JSON.parse(watched_videos);
+                }
+
+                if(!watched_videos.hasOwnProperty(session))
+                {
+                    watched_videos = {};
+                    watched_videos[session] = {};
+                    watched_videos[session][video] = true;
+                    localStorage.setItem('watched_videos', JSON.stringify(watched_videos));
+                    queryToServer(video);
+                }
+                else{
+                    if(!watched_videos[session].hasOwnProperty(video))
+                    {
+                        watched_videos[session][video] = true;
+                        localStorage.setItem('watched_videos', JSON.stringify(watched_videos));
+                        queryToServer(video);
+                    }
+                }
+            }
+            else{
+                watched_videos = {};
+                watched_videos[session] = {};
+                watched_videos[session][video] = true;
+                localStorage.setItem('watched_videos', JSON.stringify(watched_videos));
+                queryToServer(video);
+            }
+        }
+
+        function queryToServer(video)
+        {
+            let url = `/save/video/view/${video}`;
+            fetch(url, {
+                headers: {
+                    'X-CSRF-TOKEN': "{{csrf_token()}}"
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+    </script>
     <!-- Related Blog Section End -->
 
 @endsection

@@ -9,8 +9,10 @@ use App\Models\File;
 use App\Models\Image;
 use App\Models\Service;
 use App\Models\Video;
+use App\Models\VideoView;
 use App\Services\ActionService;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -84,5 +86,20 @@ class ActionController extends Controller
         $qr_name = str_replace('/', '', $qr_name);
         Storage::disk('public')->put('qrcodes/'.$qr_name.'.png', $qrcode);
         return view('qrcode')->with('qrcode', $qrcode);
+    }
+
+    public function viewVideo(Video $video)
+    {
+        try {
+            DB::beginTransaction();
+            $video->update(['views' => $video->views + 1]);
+            VideoView::create(['video_id' => $video->id]);
+            DB::commit();
+            return response(['result' => 'success']);
+        }
+        catch (\Exception $e) {
+            DB::rollBack();
+            return response(['result' => $e->getMessage()])->setStatusCode($e->getCode());
+        }
     }
 }

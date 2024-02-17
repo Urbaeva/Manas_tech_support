@@ -46,5 +46,5 @@ Route::group(
             Route::get('/getQr', [ActionController::class, 'getQrCode'])->name('getqr');
         });
     });
-
+Route::get('/save/video/view/{video}', [ActionController::class, 'viewVideo']);
 Auth::routes();
