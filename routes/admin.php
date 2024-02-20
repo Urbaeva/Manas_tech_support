@@ -78,9 +78,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
         Route::delete('/video/{video}/delete', [ActionController::class, 'deleteVideo'])->name('admin.video.delete');
         Route::delete('/image/{image}/delete', [ActionController::class, 'deleteImage'])->name('admin.image.delete');
 
-    });
 
+    });
+    Route::get('/show/video/{video}', [IndexController::class, 'showVideo'])->name('admin.video.show');
     Route::get('/get/video/statistic', [IndexController::class, 'statistic'])->name('admin.video.statistic');
-    Route::get('/get/video/statistic{video}', [IndexController::class, 'getVideoStatistics'])->name('admin.video.statistic.video');
+    Route::get('/get/video/statistic/{video}', [IndexController::class, 'getVideoStatistics'])->name('admin.video.statistic.video');
 
 });
