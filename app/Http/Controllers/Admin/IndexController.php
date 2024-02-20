@@ -51,9 +51,9 @@ class IndexController extends Controller
             $viewsCount = $viewsByMonth->firstWhere('month', $month);
             $viewsCounts[] = $viewsCount ? $viewsCount->views_count : 0;
         }
-        return response()->json([
+        return response()->json(["data" => [
             'months' => $months,
             'viewsCounts' => $viewsCounts,
-        ]);
+        ]]);
     }
 }
