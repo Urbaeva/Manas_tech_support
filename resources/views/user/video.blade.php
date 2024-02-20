@@ -4,6 +4,22 @@
 @endsection
 @section('content')
 
+    <style>
+        .video-container {
+            position: relative;
+            overflow: hidden;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio, adjust as needed */
+            max-width: 100%;
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
     <!-- Hero Section Begin -->
     <section class="hero hero-normal">
         <div class="container">
@@ -27,13 +43,8 @@
                     <div class="hero__search">
                         <div class="hero__search__form">
                             <form action="#">
-                                <div class="hero__search__categories">
-                                    All Categories
-                                    <span class="arrow_carrot-down"></span>
-                                </div>
-                                <input type="text" placeholder="What do yo u need?">
-                                <button style="background: #224791" type="submit"
-                                        class="site-btn">{{ __('pathLang.search') }}</button>
+                                <input class="form-control" id="searchAreaId" type="text" placeholder="What do you need?" value="" oninput="getVal(this)">
+                                <button style="background: #224791"  type="submit" onclick="searchFunction(event)" class="site-btn">{{ trans('pathLang.search') }}</button>
                             </form>
                         </div>
                         <div class="hero__search__phone">
@@ -95,49 +106,17 @@
                 </div>
                 <div class="col-lg-8 col-md-7 order-md-1 order-1">
                     <div class="blog__details__text">
+
+                        <div class="video-container">
+                            <video controls style="width: 100%; height: auto;" onclick="clickToVideo('{{$video->id}}')">
+                                <source src="{{ route('user.service.getVideo', $video->id) }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+
                         <a href="{{ route('user.service.getVideo', $video->id) }}">
                             <h3 class="text-center">{{ $video->getTitle() }}</h3>
                         </a>
-                        <video controls style="width: 769px; height: 647px;" onclick="clickToVideo('{{$video->id}}')">
-                            <source src="{{ route('user.service.getVideo', $video->id) }}"
-                                    type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-
-                        <p>The study area is located at the back with a view of the vast nature. Together with the other
-                            buildings, a congruent story has been managed in which the whole has a reinforcing effect on
-                            the components. The use of materials seeks connection to the main house, the adjacent
-                            stables</p>
-                    </div>
-                    <div class="blog__details__content">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="blog__details__author">
-                                    <div class="blog__details__author__pic">
-                                        <img src="{{ asset('user_files/img/blog/details/details-author.jpg') }}" alt="">
-                                    </div>
-                                    <div class="blog__details__author__text">
-                                        <h6>Michael Scofield</h6>
-                                        <span>Admin</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="blog__details__widget">
-                                    <ul>
-                                        <li><span>Categories:</span> {{ $category->getTitle() }}</li>
-                                        <li><span>Tags:</span> All, Trending, Cooking, Healthy Food, Life Style</li>
-                                    </ul>
-                                    <div class="blog__details__social">
-                                        <a href="#"><i class="fa fa-facebook"></i></a>
-                                        <a href="#"><i class="fa fa-twitter"></i></a>
-                                        <a href="#"><i class="fa fa-google-plus"></i></a>
-                                        <a href="#"><i class="fa fa-linkedin"></i></a>
-                                        <a href="#"><i class="fa fa-envelope"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

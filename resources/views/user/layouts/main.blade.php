@@ -211,6 +211,31 @@
     }
 </script>
 
+<script>
+
+    function searchFunction(event)
+    {
+        event.preventDefault();
+        let search = document.getElementById('searchAreaId').value;
+        if(search)
+        {
+            location.href = "{{route('user.index')}}" + `?search=${search}`;
+        }
+        else{
+            location.href = "{{route('user.index')}}";
+        }
+
+    }
+
+    function getVal(val)
+    {
+        if(!val.value)
+        {
+            location.href = "{{route('user.index')}}";
+        }
+    }
+</script>
+
 </body>
 
 </html>

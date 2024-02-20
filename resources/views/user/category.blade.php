@@ -27,12 +27,8 @@
                     <div class="hero__search">
                         <div class="hero__search__form">
                             <form action="#">
-                                <div class="hero__search__categories">
-                                    All services
-                                    <span class="arrow_carrot-down"></span>
-                                </div>
-                                <input type="text" placeholder="What do yo u need?">
-                                <button  style="background: #224791" type="submit" class="site-btn">{{ trans('pathLang.search') }}</button>
+                                <input class="form-control" id="searchAreaId" type="text" placeholder="What do you need?" value="" oninput="getVal(this)">
+                                <button style="background: #224791"  type="submit" onclick="searchFunction(event)" class="site-btn">{{ trans('pathLang.search') }}</button>
                             </form>
                         </div>
                         <div class="hero__search__phone">

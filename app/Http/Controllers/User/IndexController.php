@@ -12,12 +12,34 @@ use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->validate(['search' => 'nullable']);
+
         $departments = Department::all();
         $services = Service::all();
-        $all_videos = Video::all();
-        return view('user.index', compact('departments', 'services', 'all_videos'));
+
+        if(isset($search['search']))
+        {
+            $search = $search['search'];
+            $popular_videos = Video::where(function ($queryBuilder) use ($search) {
+                $queryBuilder->where('title', 'like', '%' . $search . '%')
+                    ->orWhere('title_tr', 'like', '%' . $search . '%');
+            })
+                ->orWhereHas('service', function ($departmentQuery) use ($search) {
+                    $departmentQuery->where('title', 'like', '%' . $search . '%')
+                        ->orWhere('title_tr', 'like', '%' . $search . '%')
+                        ->orWhere('description', 'like', '%' . $search . '%')
+                        ->orWhere('description_tr', 'like', '%' . $search . '%');
+                })
+                ->get();
+        }
+        else{
+            $popular_videos = Video::orderBy('views', 'desc')->take(8)->get();
+            $search = '';
+        }
+
+        return view('user.index', compact('departments', 'services', 'popular_videos', 'search'));
     }
 
     public function department(Department $department)

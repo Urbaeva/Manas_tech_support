@@ -26,13 +26,9 @@
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form action="{{ route('user.index') }}" method="GET">
-                                <div class="hero__search__categories">
-                                   {{ __('pathLang.videos') }}
-                                    <span class="arrow_carrot-down"></span>
-                                </div>
-                                <input class="form-control" id="search" type="text" placeholder="What do you need?" value="aa">
-                                <button style="background: #224791"  type="submit" class="site-btn">{{ trans('pathLang.search') }}</button>
+                            <form action="#">
+                                <input class="form-control" id="searchAreaId" type="text" placeholder="What do you need?" value="{{$search}}" oninput="getVal(this)">
+                                <button style="background: #224791"  type="submit" onclick="searchFunction(event)" class="site-btn">{{ trans('pathLang.search') }}</button>
                             </form>
                         </div>
                         <div class="hero__search__phone">
@@ -51,7 +47,33 @@
         </div>
     </section>
     <!-- Hero Section End -->
-
+    <section class="featured spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h2>{{ __('pathLang.videos') }}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row featured__filter">
+                @foreach($popular_videos as $video)
+                    <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                        <div class="featured__item">
+                            <video controls style="height: 300px;">
+                                <source src="{{ route('user.service.getVideo', $video->id) }}"
+                                        type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="featured__item__text">
+                                <h5><a style="color: black" href="{{ route('user.service.video', $video->id) }}">{{ $video->getTitle() }}</a></h5>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
     <!-- Categories Section Begin -->
     <section class="categories">
         <div class="container">
@@ -73,33 +95,7 @@
     <!-- Categories Section End -->
 
     <!-- Featured Section Begin -->
-    <section class="featured spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h2>{{ __('pathLang.all_videos') }}</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row featured__filter">
-                @foreach($all_videos as $video)
-                    <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-                        <div class="featured__item">
-                            <video controls style="height: 300px;">
-                                <source src="{{ route('user.service.getVideo', $video->id) }}"
-                                        type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                            <div class="featured__item__text">
-                                <h5><a style="color: black" href="{{ route('user.service.video', $video->id) }}">{{ $video->getTitle() }}</a></h5>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
+
     <!-- Featured Section End -->
 
 @endsection
