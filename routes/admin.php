@@ -79,4 +79,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
         Route::delete('/image/{image}/delete', [ActionController::class, 'deleteImage'])->name('admin.image.delete');
 
     });
+
+    Route::get('/get/video/statistic', [IndexController::class, 'statistic'])->name('admin.video.statistic');
+    Route::get('/get/video/statistic{video}', [IndexController::class, 'getVideoStatistics'])->name('admin.video.statistic.video');
+
 });
