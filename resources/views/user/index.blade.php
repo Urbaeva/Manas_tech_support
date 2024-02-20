@@ -26,13 +26,13 @@
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form action="#">
+                            <form action="{{ route('user.index') }}" method="GET">
                                 <div class="hero__search__categories">
                                    {{ __('pathLang.videos') }}
                                     <span class="arrow_carrot-down"></span>
                                 </div>
-                                <input type="text" placeholder="What do you need?">
-                                <button style="background: #224791" type="submit" class="site-btn">{{ trans('pathLang.search') }}</button>
+                                <input class="form-control" id="search" type="text" placeholder="What do you need?" value="aa">
+                                <button style="background: #224791"  type="submit" class="site-btn">{{ trans('pathLang.search') }}</button>
                             </form>
                         </div>
                         <div class="hero__search__phone">

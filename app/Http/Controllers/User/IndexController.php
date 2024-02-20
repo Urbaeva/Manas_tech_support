@@ -24,7 +24,7 @@ class IndexController extends Controller
     {
         $categories = $department->categories;
         $services = [];
-        foreach ($categories as $category){
+        foreach ($categories as $category) {
             $services[] = $category->services;
         }
         $services = collect($services)->flatten();
