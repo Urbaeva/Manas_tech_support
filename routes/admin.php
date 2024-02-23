@@ -82,6 +82,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     });
     Route::get('/show/video/{video}', [IndexController::class, 'showVideo'])->name('admin.video.show');
     Route::get('/get/video/statistic', [IndexController::class, 'statistic'])->name('admin.video.statistic');
-    Route::get('/get/video/statistic/{video}', [IndexController::class, 'getVideoStatistics'])->name('admin.video.statistic.video');
+    Route::post('/get/video/statistic/video', [IndexController::class, 'getVideoStatistics'])->name('admin.video.statistic.video');
 
 });

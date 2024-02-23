@@ -94,9 +94,8 @@
 <script src="{{ asset('assets/js/vector-map-custom.js') }}"></script>
 
 <!-- Chart Custom JavaScript -->
-<script src="{{ asset('assets/js/chart-custom.js') }}"></script>
-<script src="{{ asset('assets/js/charts/01.js') }}"></script>
-<script src="{{ asset('assets/js/charts/02.js') }}"></script>
+{{--<script src="{{ asset('assets/js/chart-custom.js') }}"></script>--}}
+
 
 <!-- slider JavaScript -->
 <script src="{{ asset('assets/js/slider.js') }}"></script>

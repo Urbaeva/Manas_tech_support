@@ -23,11 +23,16 @@ class IndexController extends Controller
 
     public function showVideo(Video $video)
     {
-
+        return view('admin.service.video', compact('video'));
     }
-    public function getVideoStatistics(Video $video)
+
+    public function getVideoStatistics(Request $request)
     {
-        $sixMonthsAgo = now()->subMonths(6);
+        $video = $request->validate([
+            'video_id' => 'required',
+        ]);
+
+        $video = $video['video_id'];
 
         $viewsByMonth = DB::table('videos')
             ->leftJoin('video_views', function ($join) {
@@ -39,7 +44,7 @@ class IndexController extends Controller
                 DB::raw('COUNT(video_views.id) as views_count')
             )
             ->groupBy('month')
-            ->where('videos.id', '=', $video->id)
+            ->where('videos.id', '=', $video)
             ->get();
         $months = [];
         $viewsCounts = [];

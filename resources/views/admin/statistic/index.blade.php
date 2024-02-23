@@ -6,16 +6,13 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <div class="header-title">
-                            <h4 class="card-title">Department Datatables</h4>
-                            <div class="header-action mt-2">
-                                <a href="#" class="btn btn-primary">Add</a>
-                            </div>
+                            <h4 class="card-title">Statistic</h4>
                         </div>
                         <div class="header-action">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Departments</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Statistic</li>
                                 </ol>
                             </nav>
                         </div>
@@ -41,17 +38,8 @@
                                         <td>{{ $video->title_tr }}</td>
                                         <td>{{ $video->views }}</td>
                                         <td class="text-center d-flex justify-content-between">
-                                            <a href="#">
-                                                <i class="far fa-eye"></i></a>
-                                            <a href="{{ route('admin.video.statistic.video', $video->id) }}"
-                                               class="text-success"><i class="fas fa-pencil-alt"></i></a>
-                                            <form action="#" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="border-0 bg-transparent">
-                                                    <i class="fas fa-trash text-danger" role="button"></i>
-                                                </button>
-                                            </form>
+                                            <a href="{{ route('admin.video.show', $video->id) }}"
+                                               class="text-success"><i class="far fa-eye"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
