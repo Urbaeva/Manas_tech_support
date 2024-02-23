@@ -19,4 +19,9 @@ class Video extends Model
     {
         return $this->belongsTo(Service::class);
     }
+
+    function video_views()
+    {
+        return $this->hasMany(VideoView::class);
+    }
 }
