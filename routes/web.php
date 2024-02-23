@@ -44,6 +44,9 @@ Route::group(
 
 
             Route::get('/getQr', [ActionController::class, 'getQrCode'])->name('getqr');
+
+            Route::get('/contact', [IndexController::class, 'contact'])->name('user.contact');
+            Route::get('/services', [IndexController::class, 'services'])->name('user.services');
         });
     });
 Route::get('/save/video/view/{video}', [ActionController::class, 'viewVideo']);

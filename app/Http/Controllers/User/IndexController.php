@@ -69,4 +69,15 @@ class IndexController extends Controller
         $category = $video->service->category;
         return view('user.video', compact('video', 'category'));
     }
+
+    public function services()
+    {
+        $services = Service::all();
+        return view('user.services', compact('services'));
+    }
+
+    public function contact()
+    {
+        return view('user.contact');
+    }
 }
