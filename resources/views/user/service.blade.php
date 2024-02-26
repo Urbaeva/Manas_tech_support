@@ -6,44 +6,6 @@
 @section('content')
 
     <!-- Hero Section Begin -->
-    <section class="hero hero-normal">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="hero__categories">
-                        <div class="hero__categories__all">
-                            <i class="fa fa-bars"></i>
-                            <span>{{ trans('pathLang.all_services') }}</span>
-                        </div>
-                        <ul>
-                            @foreach($service->category->services as $service_o)
-                                <li><a href="#">{{ $service_o->getTitle() }}</a></li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-9">
-                    <div class="hero__search">
-                        <div class="hero__search__form">
-                            <form action="#">
-                                <input class="form-control" id="searchAreaId" type="text" placeholder="What do you need?" value="" oninput="getVal(this)">
-                                <button style="background: #224791"  type="submit" onclick="searchFunction(event)" class="site-btn">{{ trans('pathLang.search') }}</button>
-                            </form>
-                        </div>
-                        <div class="hero__search__phone">
-                            <div class="hero__search__phone__icon">
-                                <i class="fa fa-phone"></i>
-                            </div>
-                            <div class="hero__search__phone__text">
-                                <h5>+65 11.188.888</h5>
-                                <span>support 24/7 time</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- Hero Section End -->
 
     <!-- Breadcrumb Section Begin -->
@@ -92,10 +54,10 @@
                             </div>
                         </div>
                         <div class="blog__sidebar__item">
-                            <h4>All categories</h4>
+                            <h4>{{ __('pathLang.all_categories') }}</h4>
                             <div class="blog__sidebar__item__tags">
                                 @foreach($categories as $category)
-                                    <a href="{{ route('user.department.category', $category->id) }}">{{ $category->getTitle() }}</a>
+                                    <a href="#">{{ $category->getTitle() }}</a>
                                 @endforeach
                             </div>
                         </div>
@@ -121,21 +83,13 @@
                                             <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
                                             <li><i class="fa fa-comment-o"></i> 5</li>
                                         </ul>
-                                        <h5><a href="#">{{ $video->getTitle() }}</a></h5>
+                                        <h5><a href="{{ route('user.service.video', $video->id) }}">{{ $video->getTitle() }}</a></h5>
                                         <p>{{ $service->getDescription() }}</p>
                                     </div>
                                 </div>
                             </div>
                         @endforeach
 
-                        <div class="col-lg-12">
-                            <div class="product__pagination blog__pagination">
-                                <a href="#">1</a>
-                                <a href="#">2</a>
-                                <a href="#">3</a>
-                                <a href="#"><i class="fa fa-long-arrow-right"></i></a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

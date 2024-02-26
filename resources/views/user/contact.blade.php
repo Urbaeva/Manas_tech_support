@@ -1,6 +1,6 @@
 @extends('user.layouts.main')
 @section('humberger_logo')
-    <h3><b>Manas contact</b></h3>
+    <h3><b>Manas help</b></h3>
 @endsection
 
 @section('content')
@@ -30,28 +30,28 @@
                     <div class="contact__widget">
                         <span class="icon_phone"></span>
                         <h4>Phone</h4>
-                        <p>+01-3-8888-6868</p>
+                        <p>+996 (312) 54 19 41-47</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 text-center">
                     <div class="contact__widget">
                         <span class="icon_pin_alt"></span>
                         <h4>Address</h4>
-                        <p>60-49 Road 11378 New York</p>
+                        <p>Chyngyz Aitmatov Campus (Djal), Bishkek, Kyrgyz</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 text-center">
                     <div class="contact__widget">
                         <span class="icon_clock_alt"></span>
                         <h4>Open time</h4>
-                        <p>10:00 am to 23:00 pm</p>
+                        <p>09:00 am to 17:00 pm</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 text-center">
                     <div class="contact__widget">
                         <span class="icon_mail_alt"></span>
                         <h4>Email</h4>
-                        <p>hello@colorlib.com</p>
+                        <p> info@manas.edu.kg</p>
                     </div>
                 </div>
             </div>

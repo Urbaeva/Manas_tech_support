@@ -76,16 +76,14 @@ class ActionController extends Controller
         }
     }
 
-
-
     public function getQrCode()
     {
-        $targetUrl = 'http://192.168.43.208:8787/user/1/show';
+        $targetUrl = 'http://127.0.0.1:8000/user/departments/service/video/12';
         $qrcode = QrCode::format('png')->size(200)->generate($targetUrl);
         $qr_name = Hash::make(Carbon::now().strval(rand(100,999)));
         $qr_name = str_replace('/', '', $qr_name);
         Storage::disk('public')->put('qrcodes/'.$qr_name.'.png', $qrcode);
-        return view('qrcode')->with('qrcode', $qrcode);
+        return view('home')->with('qrcode', $qrcode);
     }
 
     public function viewVideo(Video $video)

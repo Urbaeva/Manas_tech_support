@@ -9,10 +9,14 @@ return [
     'search' => 'Aramak',
 
     'all_departments'=>'Tüm bölümler',
-    'all_categories'=>'Tüm kategoriler',
+    'categories'=>'Kategoriler',
     'all_services'=>'Tüm hizmetler',
     'videos'=>'Videolar',
+    'other_videos'=>'Diğer videolar',
     'all_videos'=>'Tüm videolar',
+    'services' => 'Hizmetler',
 
+    'turkish' => 'Türkçe',
+    'what_do_you_need' => 'Ne aramak istiyorsunuz?'
 
 ];

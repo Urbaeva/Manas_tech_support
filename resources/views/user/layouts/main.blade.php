@@ -35,16 +35,18 @@
     <div class="humberger__menu__widget">
         <div class="header__top__right__language">
             @if(app()->getLocale() == 'ky')
-                <img style="height: 17px; width: 24px" src="{{ asset('user_files/img/kyrgyz.png') }}" alt="">
-                <div>Kyrgyz</div>
+                <img style="height: 17px; width: 24px;" src="{{ asset('user_files/img/kyrgyz.png') }}"
+                     alt="">
+                <div>{{ __('pathLang.kyrgyz') }}</div>
             @else
-                <img style="height: 17px; width: 24px" src="{{ asset('user_files/img/turkey.png') }}" alt="">
-                <div>Turkish</div>
+                <img style="height: 17px; width: 24px" src="{{ asset('user_files/img/turkey.png') }}"
+                     alt="">
+                <div>{{ __('pathLang.turkish') }}</div>
             @endif
             <span class="arrow_carrot-down"></span>
             <ul>
-                <li><a href="#" onclick="toKY(event)">Kyrgyz</a></li>
-                <li><a href="#" onclick="toTR(event)">Turkish</a></li>
+                <li><a href="#" onclick="toKY(event)">{{ __('pathLang.kyrgyz') }}</a></li>
+                <li><a href="#" onclick="toTR(event)">Türkçe</a></li>
             </ul>
         </div>
         <div class="header__top__right__auth">
@@ -53,24 +55,23 @@
     </div>
     <nav class="humberger__menu__nav mobile-menu">
         <ul>
-            <li class="active"><a href="{{ route('user.index') }}">Home</a></li>
-            <li><a href="./shop-grid.html">Shop</a></li>
-
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Contact</a></li>
+            <li class="active"><a href="{{ route('user.index') }}">{{ __('pathLang.home') }}</a></li>
+            <li><a href="{{ route('user.services') }}">{{ __('pathLang.services') }}</a></li>
+            <li><a href="{{ route('user.contact') }}">{{ __('pathLang.contact') }}</a></li>
         </ul>
     </nav>
     <div id="mobile-menu-wrap"></div>
     <div class="header__top__right__social">
-        <a href="#"><i class="fa fa-facebook"></i></a>
-        <a href="#"><i class="fa fa-twitter"></i></a>
-        <a href="#"><i class="fa fa-linkedin"></i></a>
-        <a href="#"><i class="fa fa-pinterest-p"></i></a>
+        <a href="http://www.facebook.com/manasuniv"><i class="fa fa-facebook"></i></a>
+        <a href="https://www.instagram.com/manasuniv"><i class="fa fa-instagram"></i></a>
+        <a href="http://twitter.com/manasuniv"><i class="fa fa-twitter"></i></a>
+        <a href="https://www.youtube.com/c/mediamanas"><i class="fa fa-youtube"></i></a>
     </div>
     <div class="humberger__menu__contact">
         <ul>
             <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-            <li>Free Shipping for all Order of $99</li>
+            <li>Address: Chyngyz Aitmatov Campus (Djal), Bishkek, Kyrgyz </li>
+            <li>Phone: +996 (312) 54 19 41-47</li>
         </ul>
     </div>
 </div>

@@ -32,10 +32,10 @@ class IndexController extends Controller
                         ->orWhere('description', 'like', '%' . $search . '%')
                         ->orWhere('description_tr', 'like', '%' . $search . '%');
                 })
-                ->get();
+            ->paginate(8);
         }
         else{
-            $popular_videos = Video::orderBy('views', 'desc')->take(8)->get();
+            $popular_videos = Video::orderBy('views', 'desc')->paginate(8);
             $search = '';
         }
 
@@ -51,11 +51,6 @@ class IndexController extends Controller
         }
         $services = collect($services)->flatten();
         return view('user.department', compact('department', 'services'));
-    }
-
-    public function category(Category $category)
-    {
-        return view('user.category', compact('category'));
     }
 
     public function service(Service $service)

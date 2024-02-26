@@ -36,7 +36,6 @@ Route::group(
 
             Route::group(['prefix' => 'departments'], function () {
                 Route::get('/{department}', [IndexController::class, 'department'])->name('user.department');
-                Route::get('/category/{category}', [IndexController::class, 'category'])->name('user.department.category');
                 Route::get('/service/{service}', [IndexController::class, 'service'])->name('user.category.service');
                 Route::get('/service/video/{video}', [IndexController::class, 'video'])->name('user.service.video');
                 Route::get('/service/get/video/{video}', [ActionController::class, 'getVideo'])->name('user.service.getVideo');
