@@ -40,20 +40,50 @@
     </div>
 </header>
 <!-- Header Section End -->
+<style>
+    .hero__categories ul {
+        display: none; /* Hide the dropdown by default */
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .hero__categories:hover ul {
+        display: block; /* Show the dropdown when the parent is hovered */
+    }
+
+    /* Optional: Add styles for better visibility */
+    .hero__categories {
+        position: relative;
+    }
+
+    .hero__categories__all {
+        cursor: pointer;
+    }
+
+    .hero__categories ul li {
+        padding: 10px;
+        background-color: #f0f0f0;
+        border-bottom: 1px solid #ccc;
+    }
+</style>
+
 
 <section class="hero">
     <div class="container">
         <div class="row">
+
+
             <div class="col-lg-3">
                 <div class="hero__categories">
                     <div class="hero__categories__all">
                         <i class="fa fa-bars"></i>
                         <span>{{ __('pathLang.all_departments') }}</span>
                     </div>
-                    <ul>
+                    <ul >
                         @php
-                        $departments = \App\Models\Department::all();
-                     @endphp
+                            $departments = \App\Models\Department::all();
+                        @endphp
                         @foreach($departments as $department)
                             <li>
                                 <a href="{{ route('user.department', $department->id) }}">{{ $department->getTitle() }}</a>
@@ -62,6 +92,7 @@
                     </ul>
                 </div>
             </div>
+
             <div class="col-lg-9">
                 <div class="hero__search">
                     <div class="hero__search__form">
@@ -76,3 +107,16 @@
         </div>
     </div>
 </section>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Hide the dropdown by default
+        $(".departments-list").hide();
+
+        // Add click event to toggle the dropdown
+        $(".hero__categories__all").click(function() {
+            $(".departments-list").toggle();
+        });
+    });
+</script>
