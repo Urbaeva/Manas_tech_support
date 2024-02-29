@@ -39,7 +39,8 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $roles = User::getRoles();
-        return view('admin.user.edit', compact('user', 'roles'));
+        $departments = Department::all();
+        return view('admin.user.edit', compact('user', 'roles', 'departments'));
     }
 
     public function update(UpdateRequest $request, User $user)

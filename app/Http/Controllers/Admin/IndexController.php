@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Video;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -12,7 +13,12 @@ class IndexController extends Controller
 {
     public function index()
     {
-        return view('admin.index');
+        $data  = [];
+        $data['total_views'] = Video::sum('views');
+        $data['total_users'] = User::count();
+        $data['total_videos'] = Video::count();
+        $top_watched_videos = Video::orderByDesc('views')->take(5)->get();
+        return view('admin.index', compact('data', 'top_watched_videos'));
     }
 
     public function statistic()

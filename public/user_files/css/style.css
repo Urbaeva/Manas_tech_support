@@ -484,6 +484,9 @@ ol {
             margin: 0 auto;
         }
     }
+    .video-container{
+        height: auto;
+    }
 }
 .header__menu ul li:hover>a {
 	color: #3662bb;

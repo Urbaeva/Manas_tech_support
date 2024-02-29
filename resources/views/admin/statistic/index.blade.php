@@ -6,7 +6,7 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <div class="header-title">
-                            <h4 class="card-title">Statistic</h4>
+                            <h4 class="card-title">Video Statistic</h4>
                         </div>
                         <div class="header-action">
                             <nav aria-label="breadcrumb">

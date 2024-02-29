@@ -32,19 +32,23 @@
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ App\Models\User::getRoles()[$user->role] }}</td>
-                                        <td class="text-center d-flex justify-content-between">
-                                            <a href="{{ route('admin.user.show', $user->id) }}">
-                                                <i class="far fa-eye"></i></a>
-                                            <a href="{{ route('admin.user.edit', $user->id) }}"
-                                               class="text-success"><i class="fas fa-pencil-alt"></i></a>
-                                            <form action="{{ route('admin.user.delete', $user->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="border-0 bg-transparent">
-                                                    <i class="fas fa-trash text-danger" role="button"></i>
-                                                </button>
-                                            </form>
-                                        </td>
+                                        @if(App\Models\User::getRoles()[$user->role] !== 'SUPER_ADMIN')
+                                            <td class="text-center d-flex justify-content-between">
+                                                <a href="{{ route('admin.user.show', $user->id) }}">
+                                                    <i class="far fa-eye"></i></a>
+                                                <a href="{{ route('admin.user.edit', $user->id) }}"
+                                                   class="text-success"><i class="fas fa-pencil-alt"></i></a>
+
+                                                <form action="{{ route('admin.user.delete', $user->id) }}"
+                                                      method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="border-0 bg-transparent">
+                                                        <i class="fas fa-trash text-danger" role="button"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        @endif
                                     </tr>
                                 @endforeach
                                 </tbody>

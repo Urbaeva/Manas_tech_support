@@ -7,6 +7,8 @@
             overflow: hidden;
             padding-bottom: 56.25%; /* 16:9 aspect ratio, adjust as needed */
             max-width: 100%;
+            width: 100%;
+            height: 400px;
         }
 
         video {
@@ -63,7 +65,7 @@
                     <div class="blog__details__text">
 
                         <div class="video-container">
-                            <video controls style="width: 100%; height: auto;" id="videoPlayId">
+                            <video controls style="" id="videoPlayId">
                                 <source src="{{ route('user.service.getVideo', $video->id) }}" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
@@ -84,6 +86,7 @@
 
 
         document.getElementById('videoPlayId').addEventListener('play', function() {
+            let video = "{{$video->id}}";
             if(watched_videos)
             {
                 if(typeof watched_videos === 'string')

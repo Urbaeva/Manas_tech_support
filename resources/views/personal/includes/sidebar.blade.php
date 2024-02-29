@@ -28,7 +28,7 @@
                             </svg>
                         </i>
                         <span class="ml-2">Dashboard</span>
-                        <p class="mb-0 w-10 badge badge-pill badge-primary">6</p>
+                        <p class="mb-0 w-10 badge badge-pill badge-primary"></p>
                     </a>
                 </li>
 
