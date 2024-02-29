@@ -107,16 +107,3 @@
         </div>
     </div>
 </section>
-
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>
-    $(document).ready(function() {
-        // Hide the dropdown by default
-        $(".departments-list").hide();
-
-        // Add click event to toggle the dropdown
-        $(".hero__categories__all").click(function() {
-            $(".departments-list").toggle();
-        });
-    });
-</script>
