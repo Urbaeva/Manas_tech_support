@@ -41,11 +41,21 @@
 </header>
 <!-- Header Section End -->
 <style>
+    .hero__categories {
+        position: relative;
+        z-index: 1; /* Ensure the dropdown appears above other content */
+    }
+
     .hero__categories ul {
         display: none; /* Hide the dropdown by default */
         list-style: none;
         padding: 0;
         margin: 0;
+        position: absolute;
+        top: 100%; /* Position the dropdown below the parent */
+        left: 0;
+        background-color: #fff; /* Optional: Add a background color for better visibility */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a box shadow for a subtle effect */
     }
 
     .hero__categories:hover ul {
@@ -53,17 +63,12 @@
     }
 
     /* Optional: Add styles for better visibility */
-    .hero__categories {
-        position: relative;
-    }
-
     .hero__categories__all {
         cursor: pointer;
     }
 
     .hero__categories ul li {
         padding: 10px;
-        background-color: #f0f0f0;
         border-bottom: 1px solid #ccc;
     }
 </style>
@@ -72,8 +77,6 @@
 <section class="hero">
     <div class="container">
         <div class="row">
-
-
             <div class="col-lg-3">
                 <div class="hero__categories">
                     <div class="hero__categories__all">
