@@ -10,10 +10,10 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Contact Us</h2>
+                        <h2>{{__('pathLang.contact')}}</h2>
                         <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
-                            <span>Contact Us</span>
+                            <a href="./index.html">{{__('pathLang.home')}}</a>
+                            <span>{{__('pathLang.contact')}}</span>
                         </div>
                     </div>
                 </div>
@@ -36,15 +36,15 @@
                 <div class="col-lg-3 col-md-3 col-sm-6 text-center">
                     <div class="contact__widget">
                         <span class="icon_pin_alt"></span>
-                        <h4>Address</h4>
-                        <p>Chyngyz Aitmatov Campus (Djal), Bishkek, Kyrgyz</p>
+                        <h4>{{__('pathLang.adres')}}</h4>
+                        <p>{{__('pathLang.address')}}</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 text-center">
                     <div class="contact__widget">
                         <span class="icon_clock_alt"></span>
                         <h4>Open time</h4>
-                        <p>09:00 am to 17:00 pm</p>
+                        <p>09:00 - 17:00</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 text-center">

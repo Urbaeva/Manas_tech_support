@@ -17,6 +17,12 @@ return [
     'services' => 'Hizmetler',
 
     'turkish' => 'Türkçe',
-    'what_do_you_need' => 'Ne aramak istiyorsunuz?'
+    'what_do_you_need' => 'Aramak',
+    'address' => 'Cengiz AYTMATOV Kampüsü (Cal), 720038',
+    'adres' => 'Address',
+    'phone' => 'Telefon',
+    'social_medias' => 'Sosyal Aglar',
+    'links' => 'İletişim İçin'
+
 
 ];

@@ -34,14 +34,8 @@
                             <li><a href="#" onclick="toTR(event)">Türkçe</a></li>
                         </ul>
                     </div>
-                        <div class="header__top__right__auth">
-                            <a href="{{ route('login') }}"><i class="fa fa-user"></i> Login</a>
-                        </div>
                 </div>
             </div>
-        </div>
-        <div class="humberger__open">
-            <i class="fa fa-bars"></i>
         </div>
     </div>
 </header>
@@ -51,10 +45,10 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
-                <div class="hero__categories" >
-                    <div class="hero__categories__all"  >
+                <div class="hero__categories">
+                    <div class="hero__categories__all">
                         <i class="fa fa-bars"></i>
-                        <span >{{ __('pathLang.all_departments') }}</span>
+                        <span>{{ __('pathLang.all_departments') }}</span>
                     </div>
                     <ul>
                         @php
@@ -75,15 +69,6 @@
                             <input class="form-control" id="searchAreaId" type="text" placeholder="{{ __('pathLang.what_do_you_need') }}" value="" oninput="getVal(this)">
                             <button style="background: #224791"  type="submit" onclick="searchFunction(event)" class="site-btn">{{ trans('pathLang.search') }}</button>
                         </form>
-                    </div>
-                    <div class="hero__search__phone">
-                        <div class="hero__search__phone__icon">
-                            <i class="fa fa-phone"></i>
-                        </div>
-                        <div class="hero__search__phone__text">
-                            <h5>+65 11.188.888</h5>
-                            <span>support 24/7 time</span>
-                        </div>
                     </div>
                 </div>
 

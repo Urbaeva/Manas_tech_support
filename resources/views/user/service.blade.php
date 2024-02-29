@@ -16,7 +16,7 @@
                     <div class="breadcrumb__text">
                         <h2>{{ $service->getTitle() }}</h2>
                         <div class="breadcrumb__option">
-                            <a href="{{ route('user.index') }}">Home</a>
+                            <a href="{{ route('user.index') }}">{{__('pathLang.home')}}</a>
                             <span>{{ $service->getTitle() }}</span>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                             </div>
                         </div>
                         <div class="blog__sidebar__item">
-                            <h4>{{ __('pathLang.all_categories') }}</h4>
+                            <h4>{{ __('pathLang.categories') }}</h4>
                             <div class="blog__sidebar__item__tags">
                                 @foreach($categories as $category)
                                     <a href="#">{{ $category->getTitle() }}</a>

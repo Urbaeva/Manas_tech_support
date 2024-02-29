@@ -469,6 +469,9 @@ ol {
 	opacity: 1;
 	visibility: visible;
 }
+
+
+
 @media  {
     .featured__filter {
         display: flex;

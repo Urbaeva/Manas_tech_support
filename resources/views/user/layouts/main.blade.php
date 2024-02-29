@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ asset('user_files/css/owl.carousel.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('user_files/css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('user_files/css/style.css') }}" type="text/css">
+
 </head>
 
 <body>
@@ -83,52 +84,40 @@
 @yield('content')
 
 
-
-
-
 <!-- Footer Section Begin -->
-<footer class="footer spad">
+<footer class="footer spad" >
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="footer__about">
                     <div class="footer__about__logo">
-                        <a href="#"><img src="{{ asset('user_files/img/logo326.png') }}" alt=""></a>
+{{--                        <a href="#"><img src="{{ asset('user_files/img/logo326.png') }}" alt=""></a>--}}
+                        <img style="border-radius: 50%;" src="{{ asset('user_files/img/logo326.jpg') }}" alt="">
                     </div>
+
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-6 col-sm-6 offset-lg-1">
+                <div class="footer__widget">
+                    <h6>{{ __('pathLang.links') }}</h6>
                     <ul>
-                        <li>Address: Chyngyz Aitmatov Campus (Djal), Bishkek, Kyrgyz </li>
-                        <li>Phone: +996 (312) 54 19 41-47</li>
+                        <li>{{ __('pathLang.address') }}</li>
+                        <li>{{__('pathLang.phone')}}: +996 (312) 54 19 41-47</li>
                         <li>Email: info@manas.edu.kg</li>
                     </ul>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
-                <div class="footer__widget">
-                    <h6>Useful Links</h6>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#">Who We Are</a></li>
-                        <li><a href="#">Our Services</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-12">
-                <div class="footer__widget">
-                    <h6>Join Our Newsletter Now</h6>
-
-                    <div class="footer__widget__social">
-                        <a href="http://www.facebook.com/manasuniv"><i class="fa fa-facebook"></i></a>
-                        <a href="https://www.instagram.com/manasuniv"><i class="fa fa-instagram"></i></a>
-                        <a href="http://twitter.com/manasuniv"><i class="fa fa-twitter"></i></a>
-                        <a href="https://www.youtube.com/c/mediamanas"><i class="fa fa-youtube"></i></a>
+                    <div class="footer__widget">
+                        <h6>{{__('pathLang.social_medias')}}</h6>
+                        <div class="footer__widget__social">
+                            <a href="http://www.facebook.com/manasuniv"><i class="fa fa-facebook"></i></a>
+                            <a href="https://www.instagram.com/manasuniv"><i class="fa fa-instagram"></i></a>
+                            <a href="http://twitter.com/manasuniv"><i class="fa fa-twitter"></i></a>
+                            <a href="https://www.youtube.com/c/mediamanas"><i class="fa fa-youtube"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="footer__copyright__text"><p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved</p></div>
+        <div class="footer__copyright__text" ><p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved</p></div>
     </div>
 
 </footer>

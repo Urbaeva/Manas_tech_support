@@ -47,7 +47,9 @@ class ServiceController extends Controller
     public function update(UpdateRequest $request, Service $service)
     {
         $data = $request->validated();
-        $data['logo'] = Storage::disk('public')->put('/logos', $data['logo']);
+        if (isset($data['logo'])) {
+            $data['logo'] = Storage::disk('public')->put('/logos', $data['logo']);
+        }
         $service->update($data);
         return redirect()->route('admin.service.index')->with(['notification' => $data['title'] . ' updated successfully!']);
     }
