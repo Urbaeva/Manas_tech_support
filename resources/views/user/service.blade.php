@@ -45,9 +45,9 @@
                                         <div class="blog__sidebar__recent__item__text">
                                             <h6>{{ $service_o->getTitle() }}</h6>
                                             @php
-                                                $date = \Illuminate\Support\Carbon::parse($service->created_at);
+                                                $date = \Illuminate\Support\Carbon::parse($service->created_at)->format('Y-m-d')
                                             @endphp
-                                            <span style="font-size: 10px;">{{ $date->format('F') }} {{ $date->day }}, {{ $date->year }}</span>
+                                            <span style="font-size: 10px;">{{ $date }}</span>
                                         </div>
                                     </a>
                                 @endforeach
@@ -80,8 +80,17 @@
                                     </div>
                                     <div class="blog__item__text">
                                         <ul>
-                                            <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 5</li>
+                                            <li><i><svg xmlns="http://www.w3.org/2000/svg" style="height: 23px; width: 23px;" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+                                                    </svg>
+                                                </i>{{ $date }}</li>
+                                            @php
+                                                $views = $video->views;
+                                            @endphp
+                                            <li><i><svg xmlns="http://www.w3.org/2000/svg" style="height: 23px; width: 23px;" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                                    </svg></i>{{ $views }}</li>
                                         </ul>
                                         <h5><a href="{{ route('user.service.video', $video->id) }}">{{ $video->getTitle() }}</a></h5>
                                         <p>{{ $service->getDescription() }}</p>
