@@ -60,7 +60,7 @@
                             @enderror
                         </div>
                         <input type="submit" class="btn btn-primary" value="Submit">
-                        <input type="submit" class="btn bg-danger" value="Cancel">
+                        <a href="{{ route('admin.user.index') }}" class="btn btn-outline-primary">Cancel</a>
                     </form>
                 </div>
             </div>

@@ -29,7 +29,7 @@
                 <div class="col-lg-3 col-md-3 col-sm-6 text-center">
                     <div class="contact__widget">
                         <span class="icon_phone"></span>
-                        <h4>Phone</h4>
+                        <h4>{{__('pathLang.phone')}}</h4>
                         <p>+996 (312) 54 19 41-47</p>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                 <div class="col-lg-3 col-md-3 col-sm-6 text-center">
                     <div class="contact__widget">
                         <span class="icon_clock_alt"></span>
-                        <h4>Open time</h4>
+                        <h4>{{ __('pathLang.open_time') }}</h4>
                         <p>09:00 - 17:00</p>
                     </div>
                 </div>

@@ -8,7 +8,7 @@ return [
     'contact'=>'Байланышуу',
     'search'=>'Издөө',
 
-    'all_departments'=>'Департементтер',
+    'all_departments'=>'Башкармалыктар',
     'categories'=>'Категориялар',
     'all_services'=>'Инструкциялар',
     'videos'=>'Видеолор',

@@ -8,13 +8,13 @@ return [
     'contact' => 'Iletişim',
     'search' => 'Aramak',
 
-    'all_departments'=>'Tüm bölümler',
+    'all_departments'=>'Başkanlıklar',
     'categories'=>'Kategoriler',
-    'all_services'=>'Tüm hizmetler',
+    'all_services'=>'Kılavuzlar',
     'videos'=>'Videolar',
     'other_videos'=>'Diğer videolar',
     'all_videos'=>'Tüm videolar',
-    'services' => 'Hizmetler',
+    'services' => 'Kılavuzlar',
 
     'turkish' => 'Türkçe',
     'what_do_you_need' => 'Aramak',
@@ -22,7 +22,8 @@ return [
     'adres' => 'Address',
     'phone' => 'Telefon',
     'social_medias' => 'Sosyal Aglar',
-    'links' => 'İletişim İçin'
+    'links' => 'İletişim İçin',
+    'open_time' => 'Çalışma saatleri',
 
 
 ];

@@ -54,6 +54,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
 
         Route::delete('/{user}/delete', [UserController::class, 'delete'])->name('admin.user.delete');
         Route::get('/{user}', [UserController::class, 'show'])->name('admin.user.show');
+
+        Route::post('/changePassword/{user}', [UserController::class, 'changePassword'])->name('admin.user.changePassword');
     });
 
     Route::group(['prefix' => 'services'], function () {

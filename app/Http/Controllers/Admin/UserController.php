@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\User\StoreRequest;
 use App\Http\Requests\Admin\User\UpdateRequest;
 use App\Models\Department;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -41,6 +42,15 @@ class UserController extends Controller
         $roles = User::getRoles();
         $departments = Department::all();
         return view('admin.user.edit', compact('user', 'roles', 'departments'));
+    }
+
+    public function changePassword(Request $request, User $user)
+    {
+        $data = $request->validate([
+            'npass' => 'string|required',
+        ]);
+        $user->update(['password' => $data['npass']]);
+        return back()->with(['notification' => 'Password changed!']);
     }
 
     public function update(UpdateRequest $request, User $user)

@@ -14,14 +14,12 @@ class User extends Authenticatable
 
     const SUPER_ADMIN = 2;
     const ADMIN = 1;
-    const USER = 0;
 
     public static function getRoles()
     {
         return [
             self::SUPER_ADMIN => 'SUPER_ADMIN',
             self::ADMIN => 'ADMIN',
-            self::USER => 'USER',
         ];
     }
 
