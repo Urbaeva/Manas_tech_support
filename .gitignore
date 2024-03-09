@@ -18,3 +18,7 @@ yarn-error.log
 /.idea
 /.vscode
 /storage/app/dgs/*
+public/assets/*
+public/plugins/*
+public/user_files/*
+public/video/*
